@@ -1,0 +1,4 @@
+.env
+event.json
+.lambda
+node_modules/

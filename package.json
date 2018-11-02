@@ -1,0 +1,17 @@
+{
+  "name": "sfr-lambda-epub-to-s3",
+  "version": "0.0.1",
+  "description": "A lambda for the SFR project that reads a Kinesis stream and stores ePub files in s3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Benowitz",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "node-lambda": "^0.12.0",
+    "node-localstack": "0.0.2",
+    "zlib": "^1.0.5"
+  }
+}
