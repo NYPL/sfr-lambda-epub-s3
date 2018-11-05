@@ -1,5 +1,8 @@
 const AWS = require('aws-sdk')
 const axios = require('axios')
+const unzip = require('unzip-stream')
+const stream = require('stream')
+const fs = require('fs')
 
 AWS.config.update({
     region: 'us-east-1',
@@ -18,6 +21,9 @@ var record, fileName, dateUpdated, putParams, handleResp, records, headParams
 exports.resultHandler = (handleResp) => {
     // TODO Pass the results to SQS/Kinesis/postgresql
     console.log(handleResp)
+    if (handleResp.status !== 200){
+        console.log("ERROR")
+    }
 }
 
 exports.checkForExisting = (fileName, updated) => {
@@ -38,10 +44,13 @@ exports.checkForExisting = (fileName, updated) => {
     })
 }
 
-exports.epubStore = (fileName, itemID, response) => {
+exports.epubStore = (fileName, itemID, bucket, response) => {
+    let putData
+    if(bucket == 'sfr_epub') putData = response.data
+    else putData = response
     putParams = {
-        Body: response.data,
-        Bucket: epubBucket,
+        Body: putData,
+        Bucket: bucket,
         Key: fileName,
         ACL: 'public-read'
     }
@@ -71,6 +80,25 @@ exports.epubStore = (fileName, itemID, response) => {
     })
 }
 
+exports.epubExplode = (fileName, itemID, response) => {
+    try{
+        response.data.pipe(unzip.Parse())
+        .on('entry', function (entry) {
+            let partName = fileName + '/' + entry.path
+            exports.epubStore(partName, itemID, explBucket, entry)
+        })
+
+    } catch (err) {
+        let handleResp = {
+            "status": err.statusCode,
+            "code": err.code,
+            "message": err.message
+        }
+        exports.resultHandler(handleResp)
+    }
+
+}
+
 exports.handler = (event, context, callback) => {
     records = event['records']
     for(var i = 0; i < records.length; i++){
@@ -83,10 +111,11 @@ exports.handler = (event, context, callback) => {
             axios({
                 method: 'get',
                 url: url,
-                responseType: 'arraybuffer'
+                responseType: 'stream'
             })
             .then((response) => {
-                exports.epubStore(fileName, itemID, response)
+                exports.epubExplode(fileName, itemID, response)
+                exports.epubStore(fileName, itemID, epubBucket, response)
             })
             .catch((error) => {
                 handleResp = {
@@ -105,5 +134,6 @@ exports.handler = (event, context, callback) => {
             }
             exports.resultHandler(handleResp)
         })
+
     }
 }

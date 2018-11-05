@@ -4,14 +4,18 @@
   "description": "A lambda for the SFR project that reads a Kinesis stream and stores ePub files in s3",
   "main": "index.js",
   "scripts": {
+    "local": "node-lambda run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Michael Benowitz",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.348.0",
     "axios": "^0.18.0",
-    "node-lambda": "^0.12.0",
-    "node-localstack": "0.0.2",
+    "unzip-stream": "^0.3.0",
     "zlib": "^1.0.5"
+  },
+  "devDependencies": {
+    "node-lambda": "^0.12.0"
   }
 }
