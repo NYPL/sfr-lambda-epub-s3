@@ -1,13 +1,24 @@
-const unzip = require('unzip-stream')
-const stream = require('stream')
-const fs = require('fs')
-
+import AWS from 'aws-sdk'
+import unzip from 'unzip-stream'
+import stream from 'stream'
 import {resultHandler} from './responseHandlers'
 
-const checkForExisting = (fileName, updated) => {
+AWS.config.update({
+    region: 'us-east-1',
+    logger: process.stdout
+})
+
+var customS3Endpoint
+if(process.env.AWS_S3_ENDPOINT){
+    customS3Endpoint = {endpoint: process.env.AWS_S3_ENDPOINT}
+}
+const S3 = new AWS.S3(customS3Endpoint)
+var handleResp
+
+export const checkForExisting = (fileName, updated, bucket) => {
     return new Promise((resolve, reject) => {
-        headParams = {
-            Bucket: epubBucket,
+        let headParams = {
+            Bucket: bucket,
             Key: fileName,
             IfUnmodifiedSince: updated
         }
@@ -22,11 +33,11 @@ const checkForExisting = (fileName, updated) => {
     })
 }
 
-const epubStore = (fileName, itemID, bucket, response) => {
+export const epubStore = (fileName, itemID, bucket, response) => {
     let putData
     if(bucket == 'sfr_epub') putData = response.data
     else putData = response
-    putParams = {
+    let putParams = {
         Body: putData,
         Bucket: bucket,
         Key: fileName,
@@ -34,7 +45,7 @@ const epubStore = (fileName, itemID, bucket, response) => {
     }
     let uploadProm = S3.upload(putParams).promise()
     uploadProm.then((data) => {
-        handleResp = {
+        let handleResp = {
             "status": 200,
             "code": "stored",
             "message": "Stored ePub",
@@ -46,7 +57,7 @@ const epubStore = (fileName, itemID, bucket, response) => {
         }
     })
     .catch((err) => {
-        handleResp = {
+        let handleResp = {
             "status": err.statusCode,
             "code": err.code,
             "message": err.message
@@ -58,7 +69,7 @@ const epubStore = (fileName, itemID, bucket, response) => {
     })
 }
 
-const epubExplode = (fileName, itemID, response) => {
+export const epubExplode = (fileName, itemID, response) => {
     try{
         response.data.pipe(unzip.Parse())
         .on('entry', function (entry) {

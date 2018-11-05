@@ -1,22 +1,16 @@
-const AWS = require('aws-sdk')
-const axios = require('axios')
-
-import { checkForExisting, epubStore, epubExplode } from './src/epubParsers'
+import axios from 'axios'
+import LambdaEnvVars from 'lambda-env-vars'
+import {checkForExisting, epubStore, epubExplode} from './src/epubParsers'
 import {resultHandler} from './src/responseHandlers'
-
-AWS.config.update({
-    region: 'us-east-1',
-    logger: process.stdout
-})
-
-const S3 = new AWS.S3({endpoint: 'http://localhost:4572'})
-
-const epubBucket = 'sfr_epub'
-const explBucket = 'sfr_expl'
 
 const fileNameRegex = /[0-9]+[.]{1}epub[.]{1}(?:no|)images/
 
+const lambdaEnvVarsClient = new LambdaEnvVars()
+
 var record, fileName, dateUpdated, putParams, handleResp, records, headParams
+
+const epubBucket = process.env.AWS_S3_EPUB_BUCKET
+const explBucket = process.env.AWS_S3_EXPL_BUCKET
 
 exports.handler = (event, context, callback) => {
     records = event['records']
@@ -26,7 +20,7 @@ exports.handler = (event, context, callback) => {
         let fileName = fileNameRegex.exec(url)[0]
         let itemID = record['id']
         let updated = new Date(record['updated'])
-        exports.checkForExisting(fileName, updated).then((status) => {
+        checkForExisting(fileName, updated, epubBucket).then((status) => {
             axios({
                 method: 'get',
                 url: url,

@@ -4,18 +4,32 @@
   "description": "A lambda for the SFR project that reads a Kinesis stream and stores ePub files in s3",
   "main": "index.js",
   "scripts": {
-    "local": "node-lambda run",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "./node_modules/.bin/rimraf dist",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean && babel index.js --out-dir dist && babel src --out-dir dist/src",
+    "local-run": "npm run build && ./node_modules/.bin/node-lambda run -j ./event.json --handler dist/index.handler",
+    "deploy-dev": "npm run build && ./node_modules/.bin/node-lambda deploy -e development -f ./config/dev.env -S config/event_sources_dev.json --handler dist/index.handler -P nypl-sandbox",
+    "deploy-qa": "npm run build && ./node_modules/.bin/node-lambda deploy -e qa -f ./config/qa.env -S config/event_sources_qa.json --handler dist/index.handler",
+    "deploy-prod": "npm run build && ./node_modules/.bin/node-lambda deploy -e production -f ./config/prod.env -S config/event_sources_prod.json --handler dist/index.handler -P nypl-digital-dev",
+    "package": "./node_modules/.bin/node-lambda package"
   },
   "author": "Michael Benowitz",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.348.0",
     "axios": "^0.18.0",
+    "lambda-env-vars": "^0.4.0",
     "unzip-stream": "^0.3.0",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "node-lambda": "^0.12.0"
+    "babel-cli": "^6.26.0",
+    "babel-plugin-istanbul": "^5.1.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "babel-runtime": "^6.26.0",
+    "node-lambda": "^0.12.0",
+    "rimraf": "^2.6.2"
   }
 }
