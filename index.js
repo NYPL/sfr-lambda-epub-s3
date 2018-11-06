@@ -1,22 +1,33 @@
 import axios from 'axios'
 import LambdaEnvVars from 'lambda-env-vars'
-import {checkForExisting, epubStore, epubExplode} from './src/epubParsers'
+import {checkForExisting, epubStore, epubExplode, getBuffer} from './src/epubParsers'
 import {resultHandler} from './src/responseHandlers'
 
 const fileNameRegex = /[0-9]+[.]{1}epub[.]{1}(?:no|)images/
 
 const lambdaEnvVarsClient = new LambdaEnvVars()
 
-var record, fileName, dateUpdated, putParams, handleResp, records, headParams
+var record, fileName, dateUpdated, putParams, handleResp, records, headParams, kinesis
 
 exports.handler = (event, context, callback) => {
-    records = event['records']
+    records = event['Records']
     for(var i = 0; i < records.length; i++){
         record = records[i]
-        let url = record['url']
-        let fileName = fileNameRegex.exec(url)[0]
-        let itemID = record['id']
-        let updated = new Date(record['updated'])
+        let payload = JSON.parse(new Buffer.from(record.kinesis.data, 'base64').toString('ascii'))
+        let url = payload['url']
+        let fileNameMatch = fileNameRegex.exec(url)
+        if (!fileNameMatch){
+            handleResp = {
+                "status": 500,
+                "code": "Regex Failure",
+                "message": "Failed to extract file from url " + url
+            }
+            resultHandler(handleResp)
+            continue
+        }
+        let fileName = fileNameMatch[0]
+        let itemID = payload['id']
+        let updated = new Date(payload['updated'])
         checkForExisting(fileName, updated).then((status) => {
             axios({
                 method: 'get',
@@ -25,7 +36,18 @@ exports.handler = (event, context, callback) => {
             })
             .then((response) => {
                 epubExplode(fileName, itemID, response)
-                epubStore(fileName, itemID, 'archive', response)
+                getBuffer(response.data).then((buffer) => {
+                    epubStore(fileName, itemID, 'archive', buffer)
+                })
+                .catch((error) => {
+                    handleResp = {
+                        "status": 500,
+                        "code": "Stream-to-Buffer Error",
+                        "message": error
+                    }
+                    resultHandler(handleResp)
+                })
+
             })
             .catch((error) => {
                 handleResp = {
@@ -36,7 +58,7 @@ exports.handler = (event, context, callback) => {
                 resultHandler(handleResp)
             })
         })
-        .catch((status) => {
+        .catch((err) => {
             handleResp = {
                 "status": 200,
                 "code": "existing",

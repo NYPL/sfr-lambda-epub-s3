@@ -36,11 +36,21 @@ export const checkForExisting = (fileName, updated, bucket) => {
     })
 }
 
+export const getBuffer = (stream) => {
+    return new Promise((resolve, reject) => {
+        let buffers = []
+        stream.on('error', (e) => reject(e))
+        stream.on('data', (data) => buffers.push(data))
+        stream.on('end', () => resolve(Buffer.concat(buffers)))
+    })
+}
+
 export const epubStore = (fileName, itemID, type, response) => {
     let putData, putKey
     if(type == 'archive'){
-        putData = response.data
+        putData = response
         putKey = 'epub_test/' + fileName
+        console.log(putData)
     } else{
         putData = response
         putKey = 'expl_test/' + fileName
