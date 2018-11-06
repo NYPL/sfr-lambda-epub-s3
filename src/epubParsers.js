@@ -10,7 +10,10 @@ AWS.config.update({
 
 var customS3Endpoint
 if(process.env.AWS_S3_ENDPOINT){
-    customS3Endpoint = {endpoint: process.env.AWS_S3_ENDPOINT}
+    customS3Endpoint = {
+	endpoint: process.env.AWS_S3_ENDPOINT,
+	s3ForcePathStyle: true
+    }
 }
 const S3 = new AWS.S3(customS3Endpoint)
 var handleResp
@@ -18,8 +21,8 @@ var handleResp
 export const checkForExisting = (fileName, updated, bucket) => {
     return new Promise((resolve, reject) => {
         let headParams = {
-            Bucket: bucket,
-            Key: fileName,
+            Bucket: process.env.AWS_S3_EPUB_BUCKET,
+            Key: 'epub_test/' + fileName,
             IfUnmodifiedSince: updated
         }
         let fileCheck = S3.headObject(headParams).promise()
@@ -33,14 +36,19 @@ export const checkForExisting = (fileName, updated, bucket) => {
     })
 }
 
-export const epubStore = (fileName, itemID, bucket, response) => {
-    let putData
-    if(bucket == 'sfr_epub') putData = response.data
-    else putData = response
+export const epubStore = (fileName, itemID, type, response) => {
+    let putData, putKey
+    if(type == 'archive'){
+        putData = response.data
+        putKey = 'epub_test/' + fileName
+    } else{
+        putData = response
+        putKey = 'expl_test/' + fileName
+    }
     let putParams = {
         Body: putData,
-        Bucket: bucket,
-        Key: fileName,
+        Bucket: process.env.AWS_S3_EPUB_BUCKET,
+        Key: putKey,
         ACL: 'public-read'
     }
     let uploadProm = S3.upload(putParams).promise()
@@ -55,6 +63,7 @@ export const epubStore = (fileName, itemID, bucket, response) => {
                 "id": itemID
             }
         }
+        resultHandler(handleResp)
     })
     .catch((err) => {
         let handleResp = {
@@ -62,9 +71,6 @@ export const epubStore = (fileName, itemID, bucket, response) => {
             "code": err.code,
             "message": err.message
         }
-
-    })
-    .then(() => {
         resultHandler(handleResp)
     })
 }
@@ -74,7 +80,7 @@ export const epubExplode = (fileName, itemID, response) => {
         response.data.pipe(unzip.Parse())
         .on('entry', function (entry) {
             let partName = fileName + '/' + entry.path
-            exports.epubStore(partName, itemID, explBucket, entry)
+            exports.epubStore(partName, itemID, 'expl', entry)
         })
 
     } catch (err) {

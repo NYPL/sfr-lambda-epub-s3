@@ -9,9 +9,6 @@ const lambdaEnvVarsClient = new LambdaEnvVars()
 
 var record, fileName, dateUpdated, putParams, handleResp, records, headParams
 
-const epubBucket = process.env.AWS_S3_EPUB_BUCKET
-const explBucket = process.env.AWS_S3_EXPL_BUCKET
-
 exports.handler = (event, context, callback) => {
     records = event['records']
     for(var i = 0; i < records.length; i++){
@@ -20,7 +17,7 @@ exports.handler = (event, context, callback) => {
         let fileName = fileNameRegex.exec(url)[0]
         let itemID = record['id']
         let updated = new Date(record['updated'])
-        checkForExisting(fileName, updated, epubBucket).then((status) => {
+        checkForExisting(fileName, updated).then((status) => {
             axios({
                 method: 'get',
                 url: url,
@@ -28,7 +25,7 @@ exports.handler = (event, context, callback) => {
             })
             .then((response) => {
                 epubExplode(fileName, itemID, response)
-                epubStore(fileName, itemID, epubBucket, response)
+                epubStore(fileName, itemID, 'archive', response)
             })
             .catch((error) => {
                 handleResp = {
