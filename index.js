@@ -35,9 +35,9 @@ exports.handler = (event, context, callback) => {
                 responseType: 'stream'
             })
             .then((response) => {
-                epubExplode(fileName, itemID, response)
+                epubExplode(fileName, itemID, updated, response)
                 getBuffer(response.data).then((buffer) => {
-                    epubStore(fileName, itemID, 'archive', buffer)
+                    epubStore(fileName, itemID, updated, 'archive', buffer)
                 })
                 .catch((error) => {
                     handleResp = {

@@ -45,7 +45,7 @@ export const getBuffer = (stream) => {
     })
 }
 
-export const epubStore = (fileName, itemID, type, response) => {
+export const epubStore = (fileName, itemID, updated, type, response) => {
     let putData, putKey
     if(type == 'archive'){
         putData = response
@@ -63,17 +63,23 @@ export const epubStore = (fileName, itemID, type, response) => {
     }
     let uploadProm = S3.upload(putParams).promise()
     uploadProm.then((data) => {
-        let handleResp = {
-            "status": 200,
-            "code": "stored",
-            "message": "Stored ePub",
-            "data": {
-                "etag": data["ETag"],
-                "url": data["Location"],
-                "id": itemID
+        if(type == 'archive' || type == 'explMain'){
+            let handleResp = {
+                "status": 200,
+                "code": "stored",
+                "message": "Stored ePub",
+                "data": {
+                    "type": type,
+                    "etag": data["ETag"],
+                    "url": data["Location"],
+                    "id": itemID,
+                    "date_updated": updated.toISOString()
+                }
             }
+            resultHandler(handleResp)
+        } else {
+            console.log("Stored component of exploded ePub")
         }
-        resultHandler(handleResp)
     })
     .catch((err) => {
         let handleResp = {
@@ -85,12 +91,14 @@ export const epubStore = (fileName, itemID, type, response) => {
     })
 }
 
-export const epubExplode = (fileName, itemID, response) => {
+export const epubExplode = (fileName, itemID, updated, response) => {
     try{
         response.data.pipe(unzip.Parse())
         .on('entry', function (entry) {
             let partName = fileName + '/' + entry.path
-            exports.epubStore(partName, itemID, 'expl', entry)
+            let putType = 'explPart'
+            if (entry.path = 'content.opf') putType = 'explMain'
+            exports.epubStore(partName, itemID, updated, putType, entry)
         })
 
     } catch (err) {
