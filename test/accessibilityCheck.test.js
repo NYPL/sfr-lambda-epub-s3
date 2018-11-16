@@ -35,7 +35,7 @@ describe('Accessibility Checker [accessibilityCheck.js]', () => {
       reportStub.restore()
       tmpStub.restore()
     })
-    /*
+    
     it('should generate a report', async () => {
       let report
 
@@ -62,7 +62,7 @@ describe('Accessibility Checker [accessibilityCheck.js]', () => {
       expect(report['aceVersion']).to.equal('1.0.1')
       expect(report).to.have.property('violations')
     }).timeout(60000)
-    */
+
     it('should return an error if it cannot create a tmp file', async () => {
       let report
       reportStub.returns({})
