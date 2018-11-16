@@ -5,20 +5,33 @@
   "main": "index.js",
   "scripts": {
     "clean": "./node_modules/.bin/rimraf dist",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test ./node_modules/.bin/nyc --reporter=lcov --reporter=text ./node_modules/mocha/bin/mocha",
     "build": "npm run clean && babel index.js --out-dir dist && babel src --out-dir dist/src",
     "local-run": "npm run build && ./node_modules/.bin/node-lambda run -j ./event.json -f ./config/local.env --handler dist/index.handler",
     "deploy-dev": "npm run build && ./node_modules/.bin/node-lambda deploy -e development -f ./config/dev.env -S config/event_sources_dev.json --handler dist/index.handler -P nypl-sandbox",
     "deploy-qa": "npm run build && ./node_modules/.bin/node-lambda deploy -e qa -f ./config/qa.env -S config/event_sources_qa.json --handler dist/index.handler",
     "deploy-prod": "npm run build && ./node_modules/.bin/node-lambda deploy -e production -f ./config/prod.env -S config/event_sources_prod.json --handler dist/index.handler -P nypl-digital-dev",
-    "package": "./node_modules/.bin/node-lambda package"
+    "package": "./node_modules/.bin/node-lambda package",
+    "lint": "./node_modules/.bin/standard",
+    "lint-fix": "./node_modules/.bin/standard --fix",
+    "coverage": "./node_modules/.bin/nyc report --reporter=text-lcov | ./node_modules/.bin/coveralls",
+    "coverage:report": "./node_modules/.bin/nyc report --reporter=html && npm run coverage:open-report",
+    "coverage:open-report": "open -a 'Google Chrome' ./coverage/index.html"
   },
   "author": "Michael Benowitz",
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.348.0",
     "axios": "^0.18.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.2",
     "lambda-env-vars": "^0.4.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
+    "sinon": "^7.1.1",
+    "sinon-chai": "^3.2.0",
+    "standard": "^12.0.1",
     "unzip-stream": "^0.3.0",
     "zlib": "^1.0.5"
   },
@@ -31,5 +44,31 @@
     "babel-runtime": "^6.26.0",
     "node-lambda": "^0.12.0",
     "rimraf": "^2.6.2"
+  },
+  "nyc": {
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false,
+    "exclude": [
+      "**/*.spec.js",
+      "**/**/*.spec.js",
+      "dist/*",
+      "src/helpers/ErrorHelper.js",
+      "src/utilities/Logger.js",
+      "data/"
+    ]
+  },
+  "standard": {
+    "env": {
+      "mocha": true
+    },
+    "ignore": [
+      "/sample/",
+      "/build/",
+      "config",
+      "/data/"
+    ]
   }
 }

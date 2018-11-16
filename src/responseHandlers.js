@@ -14,7 +14,7 @@ if(process.env.AWS_KINESIS_ENDPOINT){
 
 const kinesis = new AWS.Kinesis(customKinEndpoint)
 
-export const resultHandler = (handleResp) => {
+exports.resultHandler = (handleResp) => {
     let outParams = {
         Data: JSON.stringify(handleResp),
         PartitionKey: process.env.AWS_KINESIS_STREAMID,
