@@ -5,6 +5,7 @@ import sinon from 'sinon'
 import sinonChai from 'sinon-chai'
 import axios from 'axios'
 import { resolve } from 'path'
+import fs from 'fs'
 
 import AccessibilityChecker from '../src/accessibilityCheck.js'
 import { getBuffer } from '../src/epubParsers.js'
@@ -23,10 +24,14 @@ describe('Accessibility Checker [accessibilityCheck.js]', () => {
     beforeEach(() => {
       reportStub = sinon.stub(AccessibilityChecker, 'parseReport')
       tmpStub = sinon.stub(AccessibilityChecker, 'saveTmpFile')
-
     })
 
     afterEach(() => {
+      reportStub.restore()
+      tmpStub.restore()
+    })
+
+    after(() => {
       reportStub.restore()
       tmpStub.restore()
     })
@@ -84,6 +89,19 @@ describe('Accessibility Checker [accessibilityCheck.js]', () => {
     })
   })
 
+  describe('saveTmpFile(buf)', () => {
+    it('should return an absolute path to tmp file', async () => {
+      let fakePath = await AccessibilityChecker.saveTmpFile('fakeBuf')
+      expect(fakePath).to.match(/\/.*\/tmp\/[a-zA-Z0-9]+/)
+      fs.stat(fakePath, false, (err, stats) => {
+        expect(err).to.equal(null)
+        fs.unlink(fakePath, (error) => {
+          expect(error).to.equal(null)
+        })
+      })
+    })
+  })
+
   describe('parseReport(report)', () => {
     it('should parseReport and return summary', () => {
       let summary = AccessibilityChecker.parseReport(REPORT_JSON)
@@ -91,6 +109,55 @@ describe('Accessibility Checker [accessibilityCheck.js]', () => {
       expect(summary['aceVersion']).to.equal('1.0.1')
       expect(summary['violations']).to.have.property('serious')
       expect(summary['violations']['moderate']).to.equal(69)
+    })
+  })
+
+  describe('parseAssertions(assertions)', () => {
+    let scoreStub, asserts
+
+    beforeEach(() => {
+      scoreStub = sinon.stub(AccessibilityChecker, 'calculateScore')
+      asserts = [{
+        'assertions': [
+          {
+            'earl:test': {
+              'earl:impact': 'moderate'
+            }
+          }
+        ]
+      }]
+    })
+
+    afterEach(() => {
+      scoreStub.restore()
+    })
+
+    it('should return a violation summary', () => {
+      scoreStub.returns(6.6435)
+
+      let scoreOut = AccessibilityChecker.parseAssertions(asserts)
+      expect(scoreOut['score']).to.equal(6.6435)
+      expect(scoreOut['violations'].get('moderate')).to.equal(1)
+    })
+
+    it('should return score of 0 if it\'s a negative number', () => {
+      scoreStub.returns(-1)
+
+      let scoreOut = AccessibilityChecker.parseAssertions(asserts)
+      expect(scoreOut['score']).to.equal(0)
+    })
+  })
+
+  describe('calculateScore(violations)', () => {
+    it('should calculate score', () => {
+      let violations = new Map([
+        ['critical', 0],
+        ['serious', 3],
+        ['moderate', 69],
+        ['minor', 0]
+      ])
+      let score = AccessibilityChecker.calculateScore(violations)
+      expect(score).to.equal(4.9375)
     })
   })
 })
