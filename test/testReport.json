@@ -1,0 +1,3183 @@
+{
+  "@type": "earl:report",
+  "@context": "http://daisy.github.io/ace/ace-report-1.0.jsonld",
+  "dct:title": "Ace Report",
+  "dct:description": "Report on automated accessibility checks for EPUB",
+  "dct:date": "11/16/2018, 1:38:37 PM",
+  "earl:assertedBy": {
+    "@type": "earl:software",
+    "doap:name": "DAISY Ace",
+    "doap:description": "DAISY Accessibility Checker for EPUB",
+    "doap:homepage": "http://daisy.github.io/ace",
+    "doap:created": "2017-07-01",
+    "doap:release": {
+      "doap:revision": "1.0.1"
+    }
+  },
+  "outlines": {
+    "headings": "<ul><li><span class=\"toc-h1\">The King James Version of the Bible</span><ul><li><span class=\"toc-h2\">The Old Testament of the King James Version of the Bible</span><ul><li><span class=\"toc-h3\">The First Book of Moses: Called Genesis</span><li><span class=\"toc-h3\">The Second Book of Moses: Called Exodus</span><li><span class=\"toc-h3\">The Third Book of Moses: Called Leviticus</span><li><span class=\"toc-h3\">The Fourth Book of Moses: Called Numbers</span><li><span class=\"toc-h3\">The Fifth Book of Moses: Called Deuteronomy</span><li><span class=\"toc-h3\">The Book of Joshua</span><li><span class=\"toc-h3\">The Book of Judges</span><li><span class=\"toc-h3\">The Book of Ruth</span><li><span class=\"toc-h3\">The First Book of Samuel</span><li><span class=\"toc-h3\">The Second Book of Samuel</span><li><span class=\"toc-h3\">The First Book of the Kings</span><li><span class=\"toc-h3\">The Second Book of the Kings</span><li><span class=\"toc-h3\">The First Book of the Chronicles</span><li><span class=\"toc-h3\">The Second Book of the Chronicles</span><li><span class=\"toc-h3\">Ezra</span><li><span class=\"toc-h3\">The Book of Nehemiah</span><li><span class=\"toc-h3\">The Book of Esther</span><li><span class=\"toc-h3\">The Book of Job</span><li><span class=\"toc-h3\">The Book of Psalms</span><li><span class=\"toc-h3\">The Proverbs</span><li><span class=\"toc-h3\">Ecclesiastes</span><li><span class=\"toc-h3\">The Song of Solomon</span><li><span class=\"toc-h3\">The Book of the Prophet Isaiah</span><li><span class=\"toc-h3\">The Book of the Prophet Jeremiah</span><li><span class=\"toc-h3\">The Lamentations of Jeremiah</span><li><span class=\"toc-h3\">The Book of the Prophet Ezekiel</span><li><span class=\"toc-h3\">The Book of Daniel</span><li><span class=\"toc-h3\">Hosea</span><li><span class=\"toc-h3\">Joel</span><li><span class=\"toc-h3\">Amos</span><li><span class=\"toc-h3\">Obadiah</span><li><span class=\"toc-h3\">Jonah</span><li><span class=\"toc-h3\">Micah</span><li><span class=\"toc-h3\">Nahum</span><li><span class=\"toc-h3\">Habakkuk</span><li><span class=\"toc-h3\">Zephaniah</span><li><span class=\"toc-h3\">Haggai</span><li><span class=\"toc-h3\">Zechariah</span><li><span class=\"toc-h3\">Malachi</span></li></ul></li><li><span class=\"toc-h2\">The New Testament of the King James Bible</span><ul><li><span class=\"toc-h3\">The Gospel According to Saint Matthew</span><li><span class=\"toc-h3\">The Gospel According to Saint Mark</span><li><span class=\"toc-h3\">The Gospel According to Saint Luke</span><li><span class=\"toc-h3\">The Gospel According to Saint John</span><li><span class=\"toc-h3\">The Acts of the Apostles</span><li><span class=\"toc-h3\">The Epistle of Paul the Apostle to the Romans</span><li><span class=\"toc-h3\">The First Epistle of Paul the Apostle to the Corinthians</span><li><span class=\"toc-h3\">The Second Epistle of Paul the Apostle to the Corinthians</span><li><span class=\"toc-h3\">The Epistle of Paul the Apostle to the Galatians</span><li><span class=\"toc-h3\">The Epistle of Paul the Apostle to the Ephesians</span><li><span class=\"toc-h3\">The Epistle of Paul the Apostle to the Philippians</span><li><span class=\"toc-h3\">The Epistle of Paul the Apostle to the Colossians</span><li><span class=\"toc-h3\">The First Epistle of Paul the Apostle to the Thessalonians</span><li><span class=\"toc-h3\">The Second Epistle of Paul the Apostle to the Thessalonians</span><li><span class=\"toc-h3\">The First Epistle of Paul the Apostle to Timothy</span><li><span class=\"toc-h3\">The Second Epistle of Paul the Apostle to Timothy</span><li><span class=\"toc-h3\">The Epistle of Paul the Apostle to Titus</span><li><span class=\"toc-h3\">The Epistle of Paul the Apostle to Philemon</span><li><span class=\"toc-h3\">The Epistle of Paul the Apostle to the Hebrews</span><li><span class=\"toc-h3\">The General Epistle of James</span><li><span class=\"toc-h3\">The First Epistle General of Peter</span><li><span class=\"toc-h3\">The Second General Epistle of Peter</span><li><span class=\"toc-h3\">The First Epistle General of John</span><li><span class=\"toc-h3\">The Second Epistle General of John</span><li><span class=\"toc-h3\">The Third Epistle General of John</span><li><span class=\"toc-h3\">The General Epistle of Jude</span><li><span class=\"toc-h3\">The Revelation of Saint John the Devine</span></li></ul></li></ul></li></ul>",
+    "html": "<ol><li><ol><li>The King James Version of the Bible<ol><li>The Old Testament of the King James Version of the Bible<ol><li>The First Book of Moses: Called Genesis</li></ol></li></ol></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Second Book of Moses: Called Exodus</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Third Book of Moses: Called Leviticus</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Fourth Book of Moses: Called Numbers</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Fifth Book of Moses: Called Deuteronomy</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Book of Joshua</li></ol></li><li><ol><li>The Book of Judges</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Book of Ruth</li><li>The First Book of Samuel</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Second Book of Samuel</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The First Book of the Kings</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Second Book of the Kings</li></ol></li><li><ol><li>The First Book of the Chronicles</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Second Book of the Chronicles</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>Ezra</li></ol></li><li><ol><li>The Book of Nehemiah</li></ol></li><li><ol><li>The Book of Esther</li><li>The Book of Job</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Book of Psalms</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Proverbs</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>Ecclesiastes</li><li>The Song of Solomon</li><li>The Book of the Prophet Isaiah</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Book of the Prophet Jeremiah</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Lamentations of Jeremiah</li><li>The Book of the Prophet Ezekiel</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Book of Daniel</li></ol></li><li><ol><li>Hosea</li></ol></li><li><ol><li>Joel</li><li>Amos</li><li>Obadiah</li><li>Jonah</li><li>Micah</li></ol></li><li><ol><li>Nahum</li><li>Habakkuk</li><li>Zephaniah</li><li>Haggai</li><li>Zechariah</li></ol></li><li><ol><li>Malachi</li><li>The New Testament of the King James Bible<ol><li>The Gospel According to Saint Matthew</li></ol></li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Gospel According to Saint Mark</li></ol></li><li><ol><li>The Gospel According to Saint Luke</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Gospel According to Saint John</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Acts of the Apostles</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li><li><ol><li>The Epistle of Paul the Apostle to the Romans</li></ol></li><li><ol><li>The First Epistle of Paul the Apostle to the Corinthians</li></ol></li><li><ol><li>The Second Epistle of Paul the Apostle to the Corinthians</li><li>The Epistle of Paul the Apostle to the Galatians</li><li>The Epistle of Paul the Apostle to the Ephesians</li></ol></li><li><ol><li>The Epistle of Paul the Apostle to the Philippians</li><li>The Epistle of Paul the Apostle to the Colossians</li><li>The First Epistle of Paul the Apostle to the Thessalonians</li><li>The Second Epistle of Paul the Apostle to the Thessalonians</li><li>The First Epistle of Paul the Apostle to Timothy</li><li>The Second Epistle of Paul the Apostle to Timothy</li></ol></li><li><ol><li>The Epistle of Paul the Apostle to Titus</li><li>The Epistle of Paul the Apostle to Philemon</li><li>The Epistle of Paul the Apostle to the Hebrews</li><li>The General Epistle of James</li><li>The First Epistle General of Peter</li></ol></li><li><ol><li>The Second General Epistle of Peter</li><li>The First Epistle General of John</li><li>The Second Epistle General of John</li><li>The Third Epistle General of John</li><li>The General Epistle of Jude</li><li>The Revelation of Saint John the Devine</li></ol></li><li><ol><li><i>Untitled BODY</i></li></ol></li></ol>"
+  },
+  "data": {},
+  "properties": {
+    "hasManifestFallbacks": false,
+    "hasBindings": false,
+    "hasSVGContentDocuments": false,
+    "hasFormElements": false,
+    "hasMathML": false,
+    "hasPageBreaks": false
+  },
+  "earl:testSubject": {
+    "url": "l1j0q8yc0arwq75llcbm3e",
+    "metadata": {
+      "dc:rights": "Public domain in the USA.",
+      "dc:identifier": "http://www.gutenberg.org/ebooks/10",
+      "dc:title": "The King James Version of the Bible",
+      "dc:language": "en",
+      "dc:subject": "Bible",
+      "dc:date": [
+        "1989-08-01",
+        "2018-11-01T05:00:26.790957+00:00"
+      ],
+      "dc:source": "http://www.gutenberg.org/files/10/10-h/10-h.htm"
+    },
+    "links": {}
+  },
+  "a11y-metadata": {
+    "missing": [
+      "schema:accessMode",
+      "schema:accessibilityFeature",
+      "schema:accessibilityHazard",
+      "schema:accessibilitySummary",
+      "schema:accessModeSufficient",
+      "schema:accessibilityAPI",
+      "schema:accessibilityControl",
+      "a11y:certifiedBy",
+      "dcterms:conformsTo"
+    ],
+    "empty": [],
+    "present": []
+  },
+  "assertions": [
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Add a 'schema:accessMode' metadata property to the Package Document"
+          },
+          "earl:assertedBy": "Ace",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "serious",
+            "dct:title": "metadata-schema-accessmode",
+            "dct:description": "Ensures a 'schema:accessMode' metadata is present",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/metadata/schema-org.html",
+              "dct:title": "Schema.org Accessibility Metadata",
+              "dct:description": "Publications must declare the 'schema:accessMode' metadata"
+            },
+            "rulesetTags": [
+              "EPUB"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Add a 'schema:accessibilityFeature' metadata property to the Package Document"
+          },
+          "earl:assertedBy": "Ace",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "serious",
+            "dct:title": "metadata-schema-accessibilityfeature",
+            "dct:description": "Ensures a 'schema:accessibilityFeature' metadata is present",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/metadata/schema-org.html",
+              "dct:title": "Schema.org Accessibility Metadata",
+              "dct:description": "Publications must declare the 'schema:accessibilityFeature' metadata"
+            },
+            "rulesetTags": [
+              "EPUB"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Add a 'schema:accessibilitySummary' metadata property to the Package Document"
+          },
+          "earl:assertedBy": "Ace",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "serious",
+            "dct:title": "metadata-schema-accessibilitysummary",
+            "dct:description": "Ensures a 'schema:accessibilitySummary' metadata is present",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/metadata/schema-org.html",
+              "dct:title": "Schema.org Accessibility Metadata",
+              "dct:description": "Publications must declare the 'schema:accessibilitySummary' metadata"
+            },
+            "rulesetTags": [
+              "EPUB"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Add a 'schema:accessModeSufficient' metadata property to the Package Document"
+          },
+          "earl:assertedBy": "Ace",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "metadata-schema-accessmodesufficient",
+            "dct:description": "Ensures a 'schema:accessModeSufficient' metadata is present",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/metadata/schema-org.html",
+              "dct:title": "Schema.org Accessibility Metadata",
+              "dct:description": "Publications must declare the 'schema:accessModeSufficient' metadata"
+            },
+            "rulesetTags": [
+              "EPUB"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "OEBPS/content.opf",
+        "dct:title": "The King James Version of the Bible"
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Old_Testament_of_the_King_James_Version_of_the_Bible",
+            "earl:pointer": {
+              "cfi": [
+                "/4/12[pgepubid00001]/2[The_Old_Testament_of_the_King_James_Version_of_the_Bible]"
+              ],
+              "css": [
+                "#pgepubid00001 > a"
+              ]
+            },
+            "html": "<a id=\"The_Old_Testament_of_the_King_James_Version_of_the_Bible\">The Old Testament of the King James Version of the Bible</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_First_Book_of_Moses_Called_Genesis",
+            "earl:pointer": {
+              "cfi": [
+                "/4/16[pgepubid00002]/4[The_First_Book_of_Moses_Called_Genesis]"
+              ],
+              "css": [
+                "#pgepubid00002 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_First_Book_of_Moses_Called_Genesis\">The First Book of Moses: Called Genesis</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-0.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-1.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-2.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Second_Book_of_Moses_Called_Exodus",
+            "earl:pointer": {
+              "cfi": [
+                "/4/286[pgepubid00003]/2[The_Second_Book_of_Moses_Called_Exodus]"
+              ],
+              "css": [
+                "#pgepubid00003 > a"
+              ]
+            },
+            "html": "<a id=\"The_Second_Book_of_Moses_Called_Exodus\">The Second Book of Moses: Called Exodus</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-3.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-4.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-5.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Third_Book_of_Moses_Called_Leviticus",
+            "earl:pointer": {
+              "cfi": [
+                "/4/72[pgepubid00004]/2[The_Third_Book_of_Moses_Called_Leviticus]"
+              ],
+              "css": [
+                "#pgepubid00004 > a"
+              ]
+            },
+            "html": "<a id=\"The_Third_Book_of_Moses_Called_Leviticus\">The Third Book of Moses: Called Leviticus</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-6.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-7.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Fourth_Book_of_Moses_Called_Numbers",
+            "earl:pointer": {
+              "cfi": [
+                "/4/40[pgepubid00005]/2[The_Fourth_Book_of_Moses_Called_Numbers]"
+              ],
+              "css": [
+                "#pgepubid00005 > a"
+              ]
+            },
+            "html": "<a id=\"The_Fourth_Book_of_Moses_Called_Numbers\">The Fourth Book of Moses: Called Numbers</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-8.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-9.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Fifth_Book_of_Moses_Called_Deuteronomy",
+            "earl:pointer": {
+              "cfi": [
+                "/4/536[pgepubid00006]/2[The_Fifth_Book_of_Moses_Called_Deuteronomy]"
+              ],
+              "css": [
+                "#pgepubid00006 > a"
+              ]
+            },
+            "html": "<a id=\"The_Fifth_Book_of_Moses_Called_Deuteronomy\">The Fifth Book of Moses: Called Deuteronomy</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-10.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-11.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-12.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_Joshua",
+            "earl:pointer": {
+              "cfi": [
+                "/4/2[pgepubid00007]/2[The_Book_of_Joshua]"
+              ],
+              "css": [
+                "#pgepubid00007 > a"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_Joshua\">The Book of Joshua</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-13.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_Judges",
+            "earl:pointer": {
+              "cfi": [
+                "/4/298[pgepubid00008]/2[The_Book_of_Judges]"
+              ],
+              "css": [
+                "#pgepubid00008 > a"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_Judges\">The Book of Judges</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-14.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-15.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_Ruth",
+            "earl:pointer": {
+              "cfi": [
+                "/4/40[pgepubid00009]/2[The_Book_of_Ruth]"
+              ],
+              "css": [
+                "#pgepubid00009 > a"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_Ruth\">The Book of Ruth</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_First_Book_of_Samuel",
+            "earl:pointer": {
+              "cfi": [
+                "/4/44[pgepubid00010]/4[The_First_Book_of_Samuel]"
+              ],
+              "css": [
+                "#pgepubid00010 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_First_Book_of_Samuel\">The First Book of Samuel</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-16.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-17.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Second_Book_of_Samuel",
+            "earl:pointer": {
+              "cfi": [
+                "/4/184[pgepubid00011]/2[The_Second_Book_of_Samuel]"
+              ],
+              "css": [
+                "#pgepubid00011 > a"
+              ]
+            },
+            "html": "<a id=\"The_Second_Book_of_Samuel\">The Second Book of Samuel</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-18.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-19.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_First_Book_of_the_Kings",
+            "earl:pointer": {
+              "cfi": [
+                "/4/2[pgepubid00012]/2[The_First_Book_of_the_Kings]"
+              ],
+              "css": [
+                "#pgepubid00012 > a"
+              ]
+            },
+            "html": "<a id=\"The_First_Book_of_the_Kings\">The First Book of the Kings</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-20.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-21.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Second_Book_of_the_Kings",
+            "earl:pointer": {
+              "cfi": [
+                "/4/2[pgepubid00013]/2[The_Second_Book_of_the_Kings]"
+              ],
+              "css": [
+                "#pgepubid00013 > a"
+              ]
+            },
+            "html": "<a id=\"The_Second_Book_of_the_Kings\">The Second Book of the Kings</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-22.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_First_Book_of_the_Chronicles",
+            "earl:pointer": {
+              "cfi": [
+                "/4/556[pgepubid00014]/2[The_First_Book_of_the_Chronicles]"
+              ],
+              "css": [
+                "#pgepubid00014 > a"
+              ]
+            },
+            "html": "<a id=\"The_First_Book_of_the_Chronicles\">The First Book of the Chronicles</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-23.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-24.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Second_Book_of_the_Chronicles",
+            "earl:pointer": {
+              "cfi": [
+                "/4/434[pgepubid00015]/2[The_Second_Book_of_the_Chronicles]"
+              ],
+              "css": [
+                "#pgepubid00015 > a"
+              ]
+            },
+            "html": "<a id=\"The_Second_Book_of_the_Chronicles\">The Second Book of the Chronicles</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-25.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-26.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Ezra",
+            "earl:pointer": {
+              "cfi": [
+                "/4/502[pgepubid00016]/2[Ezra]"
+              ],
+              "css": [
+                "#pgepubid00016 > a"
+              ]
+            },
+            "html": "<a id=\"Ezra\">Ezra</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-27.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_Nehemiah",
+            "earl:pointer": {
+              "cfi": [
+                "/4/260[pgepubid00017]/2[The_Book_of_Nehemiah]"
+              ],
+              "css": [
+                "#pgepubid00017 > a"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_Nehemiah\">The Book of Nehemiah</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-28.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_Esther",
+            "earl:pointer": {
+              "cfi": [
+                "/4/172[pgepubid00018]/2[The_Book_of_Esther]"
+              ],
+              "css": [
+                "#pgepubid00018 > a"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_Esther\">The Book of Esther</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_Job",
+            "earl:pointer": {
+              "cfi": [
+                "/4/176[pgepubid00019]/4[The_Book_of_Job]"
+              ],
+              "css": [
+                "#pgepubid00019 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_Job\">The Book of Job</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-29.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-30.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_Psalms",
+            "earl:pointer": {
+              "cfi": [
+                "/4/320[pgepubid00020]/2[The_Book_of_Psalms]"
+              ],
+              "css": [
+                "#pgepubid00020 > a"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_Psalms\">The Book of Psalms</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-31.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-32.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-33.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-34.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Proverbs",
+            "earl:pointer": {
+              "cfi": [
+                "/4/770[pgepubid00021]/2[The_Proverbs]"
+              ],
+              "css": [
+                "#pgepubid00021 > a"
+              ]
+            },
+            "html": "<a id=\"The_Proverbs\">The Proverbs</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-35.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-36.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Ecclesiastes",
+            "earl:pointer": {
+              "cfi": [
+                "/4/104[pgepubid00022]/2[Ecclesiastes]"
+              ],
+              "css": [
+                "#pgepubid00022 > a"
+              ]
+            },
+            "html": "<a id=\"Ecclesiastes\">Ecclesiastes</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Song_of_Solomon",
+            "earl:pointer": {
+              "cfi": [
+                "/4/108[pgepubid00023]/4[The_Song_of_Solomon]"
+              ],
+              "css": [
+                "#pgepubid00023 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Song_of_Solomon\">The Song of Solomon</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_the_Prophet_Isaiah",
+            "earl:pointer": {
+              "cfi": [
+                "/4/112[pgepubid00024]/4[The_Book_of_the_Prophet_Isaiah]"
+              ],
+              "css": [
+                "#pgepubid00024 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_the_Prophet_Isaiah\">The Book of the Prophet Isaiah</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-37.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-38.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-39.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_the_Prophet_Jeremiah",
+            "earl:pointer": {
+              "cfi": [
+                "/4/566[pgepubid00025]/2[The_Book_of_the_Prophet_Jeremiah]"
+              ],
+              "css": [
+                "#pgepubid00025 > a"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_the_Prophet_Jeremiah\">The Book of the Prophet Jeremiah</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-40.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-41.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-42.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-43.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Lamentations_of_Jeremiah",
+            "earl:pointer": {
+              "cfi": [
+                "/4/168[pgepubid00026]/2[The_Lamentations_of_Jeremiah]"
+              ],
+              "css": [
+                "#pgepubid00026 > a"
+              ]
+            },
+            "html": "<a id=\"The_Lamentations_of_Jeremiah\">The Lamentations of Jeremiah</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_the_Prophet_Ezekiel",
+            "earl:pointer": {
+              "cfi": [
+                "/4/172[pgepubid00027]/4[The_Book_of_the_Prophet_Ezekiel]"
+              ],
+              "css": [
+                "#pgepubid00027 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_the_Prophet_Ezekiel\">The Book of the Prophet Ezekiel</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-44.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-45.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-46.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Book_of_Daniel",
+            "earl:pointer": {
+              "cfi": [
+                "/4/508[pgepubid00028]/2[The_Book_of_Daniel]"
+              ],
+              "css": [
+                "#pgepubid00028 > a"
+              ]
+            },
+            "html": "<a id=\"The_Book_of_Daniel\">The Book of Daniel</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-47.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Hosea",
+            "earl:pointer": {
+              "cfi": [
+                "/4/426[pgepubid00029]/2[Hosea]"
+              ],
+              "css": [
+                "#pgepubid00029 > a"
+              ]
+            },
+            "html": "<a id=\"Hosea\">Hosea</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-48.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Joel",
+            "earl:pointer": {
+              "cfi": [
+                "/4/96[pgepubid00030]/2[Joel]"
+              ],
+              "css": [
+                "#pgepubid00030 > a"
+              ]
+            },
+            "html": "<a id=\"Joel\">Joel</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Amos",
+            "earl:pointer": {
+              "cfi": [
+                "/4/100[pgepubid00031]/4[Amos]"
+              ],
+              "css": [
+                "#pgepubid00031 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"Amos\">Amos</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Obadiah",
+            "earl:pointer": {
+              "cfi": [
+                "/4/104[pgepubid00032]/4[Obadiah]"
+              ],
+              "css": [
+                "#pgepubid00032 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"Obadiah\">Obadiah</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Jonah",
+            "earl:pointer": {
+              "cfi": [
+                "/4/108[pgepubid00033]/4[Jonah]"
+              ],
+              "css": [
+                "#pgepubid00033 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"Jonah\">Jonah</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Micah",
+            "earl:pointer": {
+              "cfi": [
+                "/4/112[pgepubid00034]/4[Micah]"
+              ],
+              "css": [
+                "#pgepubid00034 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"Micah\">Micah</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-49.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Nahum",
+            "earl:pointer": {
+              "cfi": [
+                "/4/28[pgepubid00035]/2[Nahum]"
+              ],
+              "css": [
+                "#pgepubid00035 > a"
+              ]
+            },
+            "html": "<a id=\"Nahum\">Nahum</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Habakkuk",
+            "earl:pointer": {
+              "cfi": [
+                "/4/32[pgepubid00036]/4[Habakkuk]"
+              ],
+              "css": [
+                "#pgepubid00036 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"Habakkuk\">Habakkuk</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Zephaniah",
+            "earl:pointer": {
+              "cfi": [
+                "/4/36[pgepubid00037]/4[Zephaniah]"
+              ],
+              "css": [
+                "#pgepubid00037 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"Zephaniah\">Zephaniah</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Haggai",
+            "earl:pointer": {
+              "cfi": [
+                "/4/40[pgepubid00038]/4[Haggai]"
+              ],
+              "css": [
+                "#pgepubid00038 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"Haggai\">Haggai</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Zechariah",
+            "earl:pointer": {
+              "cfi": [
+                "/4/44[pgepubid00039]/4[Zechariah]"
+              ],
+              "css": [
+                "#pgepubid00039 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"Zechariah\">Zechariah</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-50.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: Malachi",
+            "earl:pointer": {
+              "cfi": [
+                "/4/2[pgepubid00040]/2[Malachi]"
+              ],
+              "css": [
+                "#pgepubid00040 > a"
+              ]
+            },
+            "html": "<a id=\"Malachi\">Malachi</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_New_Testament_of_the_King_James_Bible",
+            "earl:pointer": {
+              "cfi": [
+                "/4/6[pgepubid00041]/4[The_New_Testament_of_the_King_James_Bible]"
+              ],
+              "css": [
+                "#pgepubid00041 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_New_Testament_of_the_King_James_Bible\">The New Testament of the King James Bible</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Gospel_According_to_Saint_Matthew",
+            "earl:pointer": {
+              "cfi": [
+                "/4/10[pgepubid00042]/4[The_Gospel_According_to_Saint_Matthew]"
+              ],
+              "css": [
+                "#pgepubid00042 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Gospel_According_to_Saint_Matthew\">The Gospel According to Saint Matthew</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-51.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-52.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Gospel_According_to_Saint_Mark",
+            "earl:pointer": {
+              "cfi": [
+                "/4/152[pgepubid00043]/2[The_Gospel_According_to_Saint_Mark]"
+              ],
+              "css": [
+                "#pgepubid00043 > a"
+              ]
+            },
+            "html": "<a id=\"The_Gospel_According_to_Saint_Mark\">The Gospel According to Saint Mark</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-53.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Gospel_According_to_Saint_Luke",
+            "earl:pointer": {
+              "cfi": [
+                "/4/394[pgepubid00044]/2[The_Gospel_According_to_Saint_Luke]"
+              ],
+              "css": [
+                "#pgepubid00044 > a"
+              ]
+            },
+            "html": "<a id=\"The_Gospel_According_to_Saint_Luke\">The Gospel According to Saint Luke</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-54.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-55.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Gospel_According_to_Saint_John",
+            "earl:pointer": {
+              "cfi": [
+                "/4/572[pgepubid00045]/2[The_Gospel_According_to_Saint_John]"
+              ],
+              "css": [
+                "#pgepubid00045 > a"
+              ]
+            },
+            "html": "<a id=\"The_Gospel_According_to_Saint_John\">The Gospel According to Saint John</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-56.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-57.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Acts_of_the_Apostles",
+            "earl:pointer": {
+              "cfi": [
+                "/4/260[pgepubid00046]/2[The_Acts_of_the_Apostles]"
+              ],
+              "css": [
+                "#pgepubid00046 > a"
+              ]
+            },
+            "html": "<a id=\"The_Acts_of_the_Apostles\">The Acts of the Apostles</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-58.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-59.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Epistle_of_Paul_the_Apostle_to_the_Romans",
+            "earl:pointer": {
+              "cfi": [
+                "/4/302[pgepubid00047]/2[The_Epistle_of_Paul_the_Apostle_to_the_Romans]"
+              ],
+              "css": [
+                "#pgepubid00047 > a"
+              ]
+            },
+            "html": "<a id=\"The_Epistle_of_Paul_the_Apostle_to_the_Romans\">The Epistle of Paul the Apostle to the Romans</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-60.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_First_Epistle_of_Paul_the_Apostle_to_the_Corinthians",
+            "earl:pointer": {
+              "cfi": [
+                "/4/190[pgepubid00048]/2[The_First_Epistle_of_Paul_the_Apostle_to_the_Corinthians]"
+              ],
+              "css": [
+                "#pgepubid00048 > a"
+              ]
+            },
+            "html": "<a id=\"The_First_Epistle_of_Paul_the_Apostle_to_the_Corinthians\">The First Epistle of Paul the Apostle to the Corinthians</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-61.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Second_Epistle_of_Paul_the_Apostle_to_the_Corinthians",
+            "earl:pointer": {
+              "cfi": [
+                "/4/24[pgepubid00049]/2[The_Second_Epistle_of_Paul_the_Apostle_to_the_Corinthians]"
+              ],
+              "css": [
+                "#pgepubid00049 > a"
+              ]
+            },
+            "html": "<a id=\"The_Second_Epistle_of_Paul_the_Apostle_to_the_Corinthians\">The Second Epistle of Paul the Apostle to the Corinthians</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Epistle_of_Paul_the_Apostle_to_the_Galatians",
+            "earl:pointer": {
+              "cfi": [
+                "/4/28[pgepubid00050]/4[The_Epistle_of_Paul_the_Apostle_to_the_Galatians]"
+              ],
+              "css": [
+                "#pgepubid00050 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Epistle_of_Paul_the_Apostle_to_the_Galatians\">The Epistle of Paul the Apostle to the Galatians</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Epistle_of_Paul_the_Apostle_to_the_Ephesians",
+            "earl:pointer": {
+              "cfi": [
+                "/4/32[pgepubid00051]/4[The_Epistle_of_Paul_the_Apostle_to_the_Ephesians]"
+              ],
+              "css": [
+                "#pgepubid00051 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Epistle_of_Paul_the_Apostle_to_the_Ephesians\">The Epistle of Paul the Apostle to the Ephesians</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-62.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Epistle_of_Paul_the_Apostle_to_the_Philippians",
+            "earl:pointer": {
+              "cfi": [
+                "/4/44[pgepubid00052]/2[The_Epistle_of_Paul_the_Apostle_to_the_Philippians]"
+              ],
+              "css": [
+                "#pgepubid00052 > a"
+              ]
+            },
+            "html": "<a id=\"The_Epistle_of_Paul_the_Apostle_to_the_Philippians\">The Epistle of Paul the Apostle to the Philippians</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Epistle_of_Paul_the_Apostle_to_the_Colossians",
+            "earl:pointer": {
+              "cfi": [
+                "/4/48[pgepubid00053]/4[The_Epistle_of_Paul_the_Apostle_to_the_Colossians]"
+              ],
+              "css": [
+                "#pgepubid00053 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Epistle_of_Paul_the_Apostle_to_the_Colossians\">The Epistle of Paul the Apostle to the Colossians</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_First_Epistle_of_Paul_the_Apostle_to_the_Thessalonians",
+            "earl:pointer": {
+              "cfi": [
+                "/4/52[pgepubid00054]/4[The_First_Epistle_of_Paul_the_Apostle_to_the_Thessalonians]"
+              ],
+              "css": [
+                "#pgepubid00054 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_First_Epistle_of_Paul_the_Apostle_to_the_Thessalonians\">The First Epistle of Paul the Apostle to the Thessalonians</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Second_Epistle_of_Paul_the_Apostle_to_the_Thessalonians",
+            "earl:pointer": {
+              "cfi": [
+                "/4/56[pgepubid00055]/4[The_Second_Epistle_of_Paul_the_Apostle_to_the_Thessalonians]"
+              ],
+              "css": [
+                "#pgepubid00055 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Second_Epistle_of_Paul_the_Apostle_to_the_Thessalonians\">The Second Epistle of Paul the Apostle to the Thessalonians</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_First_Epistle_of_Paul_the_Apostle_to_Timothy",
+            "earl:pointer": {
+              "cfi": [
+                "/4/60[pgepubid00056]/4[The_First_Epistle_of_Paul_the_Apostle_to_Timothy]"
+              ],
+              "css": [
+                "#pgepubid00056 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_First_Epistle_of_Paul_the_Apostle_to_Timothy\">The First Epistle of Paul the Apostle to Timothy</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Second_Epistle_of_Paul_the_Apostle_to_Timothy",
+            "earl:pointer": {
+              "cfi": [
+                "/4/64[pgepubid00057]/4[The_Second_Epistle_of_Paul_the_Apostle_to_Timothy]"
+              ],
+              "css": [
+                "#pgepubid00057 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Second_Epistle_of_Paul_the_Apostle_to_Timothy\">The Second Epistle of Paul the Apostle to Timothy</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-63.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Epistle_of_Paul_the_Apostle_to_Titus",
+            "earl:pointer": {
+              "cfi": [
+                "/4/18[pgepubid00058]/2[The_Epistle_of_Paul_the_Apostle_to_Titus]"
+              ],
+              "css": [
+                "#pgepubid00058 > a"
+              ]
+            },
+            "html": "<a id=\"The_Epistle_of_Paul_the_Apostle_to_Titus\">The Epistle of Paul the Apostle to Titus</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Epistle_of_Paul_the_Apostle_to_Philemon",
+            "earl:pointer": {
+              "cfi": [
+                "/4/22[pgepubid00059]/4[The_Epistle_of_Paul_the_Apostle_to_Philemon]"
+              ],
+              "css": [
+                "#pgepubid00059 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Epistle_of_Paul_the_Apostle_to_Philemon\">The Epistle of Paul the Apostle to Philemon</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Epistle_of_Paul_the_Apostle_to_the_Hebrews",
+            "earl:pointer": {
+              "cfi": [
+                "/4/26[pgepubid00060]/4[The_Epistle_of_Paul_the_Apostle_to_the_Hebrews]"
+              ],
+              "css": [
+                "#pgepubid00060 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Epistle_of_Paul_the_Apostle_to_the_Hebrews\">The Epistle of Paul the Apostle to the Hebrews</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_General_Epistle_of_James",
+            "earl:pointer": {
+              "cfi": [
+                "/4/30[pgepubid00061]/4[The_General_Epistle_of_James]"
+              ],
+              "css": [
+                "#pgepubid00061 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_General_Epistle_of_James\">The General Epistle of James</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_First_Epistle_General_of_Peter",
+            "earl:pointer": {
+              "cfi": [
+                "/4/34[pgepubid00062]/4[The_First_Epistle_General_of_Peter]"
+              ],
+              "css": [
+                "#pgepubid00062 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_First_Epistle_General_of_Peter\">The First Epistle General of Peter</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-64.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "fail"
+      },
+      "assertions": [
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Second_General_Epistle_of_Peter",
+            "earl:pointer": {
+              "cfi": [
+                "/4/86[pgepubid00063]/2[The_Second_General_Epistle_of_Peter]"
+              ],
+              "css": [
+                "#pgepubid00063 > a"
+              ]
+            },
+            "html": "<a id=\"The_Second_General_Epistle_of_Peter\">The Second General Epistle of Peter</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_First_Epistle_General_of_John",
+            "earl:pointer": {
+              "cfi": [
+                "/4/90[pgepubid00064]/4[The_First_Epistle_General_of_John]"
+              ],
+              "css": [
+                "#pgepubid00064 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_First_Epistle_General_of_John\">The First Epistle General of John</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Second_Epistle_General_of_John",
+            "earl:pointer": {
+              "cfi": [
+                "/4/94[pgepubid00065]/4[The_Second_Epistle_General_of_John]"
+              ],
+              "css": [
+                "#pgepubid00065 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Second_Epistle_General_of_John\">The Second Epistle General of John</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Third_Epistle_General_of_John",
+            "earl:pointer": {
+              "cfi": [
+                "/4/98[pgepubid00066]/4[The_Third_Epistle_General_of_John]"
+              ],
+              "css": [
+                "#pgepubid00066 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Third_Epistle_General_of_John\">The Third Epistle General of John</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_General_Epistle_of_Jude",
+            "earl:pointer": {
+              "cfi": [
+                "/4/102[pgepubid00067]/4[The_General_Epistle_of_Jude]"
+              ],
+              "css": [
+                "#pgepubid00067 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_General_Epistle_of_Jude\">The General Epistle of Jude</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        },
+        {
+          "@type": "earl:assertion",
+          "earl:result": {
+            "earl:outcome": "fail",
+            "dct:description": "Fix any of the following:\n  Document has multiple elements with the same id attribute: The_Revelation_of_Saint_John_the_Devine",
+            "earl:pointer": {
+              "cfi": [
+                "/4/106[pgepubid00068]/4[The_Revelation_of_Saint_John_the_Devine]"
+              ],
+              "css": [
+                "#pgepubid00068 > a:nth-child(2)"
+              ]
+            },
+            "html": "<a id=\"The_Revelation_of_Saint_John_the_Devine\">The Revelation of Saint John the Devine</a>"
+          },
+          "earl:assertedBy": "aXe",
+          "earl:mode": "automatic",
+          "earl:test": {
+            "earl:impact": "moderate",
+            "dct:title": "duplicate-id",
+            "dct:description": "Ensures every id attribute value is unique",
+            "help": {
+              "url": "http://kb.daisy.org/publishing/docs/html/ids.html",
+              "dct:title": "Identifiers",
+              "dct:description": "id attribute value must be unique"
+            },
+            "rulesetTags": [
+              "cat.parsing",
+              "wcag2a",
+              "wcag411"
+            ]
+          }
+        }
+      ],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-65.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    },
+    {
+      "@type": "earl:assertion",
+      "earl:result": {
+        "earl:outcome": "pass"
+      },
+      "assertions": [],
+      "earl:testSubject": {
+        "url": "@public@vhost@g@gutenberg@html@files@10@10-h@10-h-66.htm.html",
+        "dct:title": "The Project Gutenberg eBook of The Old Testament Of The King James Version Of The Bible."
+      }
+    }
+  ],
+  "earl:result": {
+    "earl:outcome": "fail"
+  }
+}

@@ -2,6 +2,7 @@ import axios from 'axios'
 import LambdaEnvVars from 'lambda-env-vars'
 import {checkForExisting, epubStore, epubExplode, getBuffer} from './src/epubParsers'
 import {resultHandler} from './src/responseHandlers'
+import AccessibilityChecker from './accessibilityCheck'
 
 const fileNameRegex = /[0-9]+[.]{1}epub[.]{1}(?:no|)images/
 
@@ -43,11 +44,36 @@ exports.handler = (event, context, callback) => {
                     handleResp = {
                         "status": 500,
                         "code": "Stream-to-Buffer Error",
+                        "data": {
+                          "id": itemID
+                        },
                         "message": error
                     }
                     resultHandler(handleResp)
+                }).finally(async () => {
+                  if (type == 'archive') {
+                    try{
+                      let accessReport = await AccessibilityChecker.runAccessibilityReport(putData)
+                      accessReport['id'] = itemID
+                      handleResp = {
+                          "status": 200,
+                          "code": "accessibility",
+                          "message": "Created Accessibility Score",
+                          "data": accessReport
+                      }
+                    } catch(err) {
+                      handleResp = {
+                          "status": 500,
+                          "code": "Accessibility Report Error",
+                          "data": {
+                            "id": itemID
+                          },
+                          "message": err
+                      }
+                      resultHandler(handleResp)
+                    }
+                  }
                 })
-
             })
             .catch((error) => {
                 handleResp = {
