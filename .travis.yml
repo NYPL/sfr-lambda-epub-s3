@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+- '6.10'
+install: npm install
+script: npm test
+cache:
+  directories:
+    - node_modules
+after_success:
+  - ENVIRONMENT_NAME=$TRAVIS_BRANCH
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then ENVIRONMENT_NAME=productionl; fi
+- provider: script
+  skip_cleanup: true
+  script: "./scripts/travis-deploy.sh $ENVIRONMENT_NAME"
+  on:
+    branch: development
+env:
+  global:
+    secure: iVbozI49UxpIxgRtC3RapIdFXCT2gD+S+4ph5+cb+bQrGEbndlLlFsUVo5N89lLiRLQt+UxFao2PpTmwDz2qvPKQxGEAxyGCdtzjER3uuPadbs04a3tnH8UoyoWe3I2rVtobrQcwryLZXBjcYsJuLrwC4GGSPXGISc5bXADxmVce5O+cwbwnxCJNrG0sKVOnlY2g3FpXK5UIKsvQpsCQLyBeKqIJ+YfDWxWhe90TCXq+ewM0Vk1kPUhBCxyALLRuXTMHUb9bvMlPghIuLUjtc0BJF3l/EVsHLHWtHWGiY9ZPJ27QG6k3Nndjhh+Tqvrtey456FJn77Wmfry8nJfwiBqtAeP5YbpOlPHx1H+k5CcgZgq19rLQ05f5Pc0NmMRwLnst0LLD4hcHrVdj1BkHdy8ihrrmyjdAL52QMrz7aT6SLVfLF5Rd4BKnVpuj3dfFYy6rFQT8YzsUxfGmA85kz7+QGir82bXRKgGLAtR+6+vdC35r2Vxn4OL8gj+0qnOJMWg0izf7uiN8lN9WjUQP61eyLgXXvHCUglet4trKYa6qZIHMOazbp78akygtYVlLplne8h1XlpM3y87etl0wwxr1nEhmFniI8sU882XOIWHwiFbb9A7Bam1M2MYJ5KA17fGq59ZqJRbT/4WDKDi4Mueyu6n5HjMBSr/fcEqO+zI=

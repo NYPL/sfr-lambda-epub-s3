@@ -1,5 +1,4 @@
 .DS_Store
-config/*.env
 event.json
 .lambda
 node_modules/
