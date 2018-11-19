@@ -1,11 +1,11 @@
 import axios from 'axios'
-import AccessibilityChecker from './accessibilityCheck'
+import AccessibilityChecker from './src/accessibilityCheck'
 import Parser from './src/epubParsers'
 import ResHandler from './src/responseHandlers'
 
 const fileNameRegex = /[0-9]+[.]{1}epub[.]{1}(?:no|)images/
 
-var records
+var records, zipData
 
 exports.handler = (event, context, callback) => {
   records = event['Records']
@@ -49,56 +49,54 @@ exports.parseRecord = (record) => {
   return new Promise((resolve, reject) => {
     Parser.checkForExisting(fileName, updated).then((status) => {
       axios({
-          method: 'get',
-          url: url,
-          responseType: 'stream'
+        method: 'get',
+        url: url,
+        responseType: 'stream'
       })
       .then((response) => {
-          epubExplode(fileName, itemID, updated, response)
-          getBuffer(response.data).then((buffer) => {
-              epubStore(fileName, itemID, updated, 'archive', buffer)
+        Parser.epubExplode(fileName, itemID, updated, response)
+        Parser.getBuffer(response.data).then((buffer) => {
+          zipData = buffer
+          Parser.epubStore(fileName, itemID, updated, 'archive', buffer)
+        })
+        .catch((error) => {
+          return resolve({
+            "status": 500,
+            "code": "Stream-to-Buffer Error",
+            "data": {
+              "id": itemID
+            },
+            "message": error
           })
-          .catch((error) => {
-              handleResp = {
-                  "status": 500,
-                  "code": "Stream-to-Buffer Error",
-                  "data": {
-                    "id": itemID
-                  },
-                  "message": error
-              }
-              resultHandler(handleResp)
-          }).finally(async () => {
-            if (type == 'archive') {
-              try{
-                let accessReport = await AccessibilityChecker.runAccessibilityReport(putData)
-                accessReport['id'] = itemID
-                handleResp = {
-                    "status": 200,
-                    "code": "accessibility",
-                    "message": "Created Accessibility Score",
-                    "data": accessReport
-                }
-              } catch(err) {
-                handleResp = {
-                    "status": 500,
-                    "code": "Accessibility Report Error",
-                    "data": {
-                      "id": itemID
-                    },
-                    "message": err
-                }
-                resultHandler(handleResp)
-              }
-            }
-          })
-      })
-      .catch((err) => {
-        return reject({
-          'status': 200,
-          'code': 'existing',
-          'message': 'Found existing, up-to-date ePub'
+        }).finally(async () => {
+          try{
+            let accessReport = await AccessibilityChecker.runAccessibilityReport(zipData)
+            accessReport['id'] = itemID
+            return resolve({
+              "status": 200,
+              "code": "accessibility",
+              "message": "Created Accessibility Score",
+              "data": accessReport
+            })
+          } catch(err) {
+            return resolve({
+              "status": 500,
+              "code": "Accessibility Report Error",
+              "data": {
+                "id": itemID
+              },
+              "message": err
+            })
+          }
         })
       })
+    })
+    .catch((err) => {
+      return resolve({
+        'status': 200,
+        'code': 'existing',
+        'message': 'Found existing, up-to-date ePub'
+      })
+    })
   })
 }

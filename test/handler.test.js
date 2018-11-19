@@ -7,6 +7,7 @@ import nock from 'nock'
 import Lambda from '../index.js'
 import ResHandler from '../src/responseHandlers.js'
 import Parser from '../src/epubParsers.js'
+import AccessibilityChecker from '../src/accessibilityCheck'
 import moment from 'moment'
 chai.should()
 chai.use(sinonChai)
@@ -86,7 +87,7 @@ describe('Handlers [index.js]', () => {
   })
 
   describe('parseRecord(record)', () => {
-    let testRecord, testData, checkStub, explodeStub, bufferStub
+    let testRecord, testData, checkStub, explodeStub, bufferStub, accessStub
     beforeEach(() => {
       testData = {
         'url': 'http://www.gutenberg.org/ebooks/10.epub.images',
@@ -102,6 +103,7 @@ describe('Handlers [index.js]', () => {
       checkStub = sinon.stub(Parser, 'checkForExisting')
       explodeStub = sinon.stub(Parser, 'epubExplode')
       bufferStub = sinon.stub(Parser, 'getBuffer')
+      accessStub = sinon.stub(AccessibilityChecker, 'runAccessibilityReport')
 
       let gutenbergResp = nock('http://www.gutenberg.org')
         .persist()
@@ -113,6 +115,7 @@ describe('Handlers [index.js]', () => {
       checkStub.restore()
       explodeStub.restore()
       bufferStub.restore()
+      accessStub.restore()
     })
 
     it('should return 500 if URL is invalid/unexpected', () => {
@@ -143,12 +146,14 @@ describe('Handlers [index.js]', () => {
       checkStub.resolves('status')
       bufferStub.resolves('A Fake Buffer')
       explodeStub.resolves('Exploded!')
+      accessStub.resolves({'data': 'data'})
       let storeStub = sinon.stub(Parser, 'epubStore')
 
       await Lambda.parseRecord(testRecord)
       expect(explodeStub).to.be.called
       expect(bufferStub).to.be.called
       expect(storeStub).to.be.called
+      expect(accessStub).to.be.called
 
       storeStub.restore()
     })
