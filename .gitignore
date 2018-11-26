@@ -4,7 +4,6 @@ event.json
 node_modules/
 dist/
 build/
-config/
 tmp/
 package-lock.json
 event_sources.json

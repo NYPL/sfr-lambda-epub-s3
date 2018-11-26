@@ -54,7 +54,7 @@ exports.runAccessCheck = async (zipData, itemID) => {
       "data": {
         "id": itemID
       },
-      "message": err
+      "message": JSON.stringify(err, Object.getOwnPropertyNames(err))
     }
   }
 }
@@ -94,7 +94,7 @@ exports.parseRecord = (record) => {
             "data": {
               "id": itemID
             },
-            "message": error
+            "message": JSON.stringify(err, Object.getOwnPropertyNames(err))
           })
         })
       })
