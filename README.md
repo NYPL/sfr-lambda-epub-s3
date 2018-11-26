@@ -7,7 +7,8 @@ This lambda applies several steps to the storage and processing of the ePub file
 1. It checks if the file exists, and if so, if it was last modified before the version passed to the Lambda. If a current version already exists, skip processing and return a status message stating so
 2. If we are ingesting a new/updated file, first explode (unzip) the .epub file and store the results within a directory. While many individual files are created during this process, only the link to the content.opf file is returned to the Kinesis stream as it is the access point for the file
 3. Store the zipped .epub file as-is
-4. Return the results of this process (or an error if the ingest process encountered a failure at any point) to a Kinesis stream
+4. Pass the zipped file data stream to the Daisy Ace report maker (running as an API on an ec2 instance to generate an accessibility report
+5. Return the results of this process (or an error if the ingest process encountered a failure at any point) to a Kinesis stream
 
 ### Input Stream
 The input stream is configured to expect several fields
@@ -23,6 +24,15 @@ The input stream is configured to expect several fields
 - Date Updated
 - Status Message
 - MD5 Hash (from s3 eTag, see below)
+
+#### Accessibility Report Output
+The accessibility reports are generated asynchronously (so that they don't block the s3 storage process) so the reports are generated separately for the output stream. They include:
+- RowID
+- Ace Version
+- Report Timestamp
+- Raw JSON output of Ace Report
+- # of violations summary (critical, serious, moderate, minor)
+
 
 #### Note on md5 hash
 The hash of the file (generally only relevant for the archived .epub) is taken from the automatically generated "eTag" from s3. As noted in the s3 documentation (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html) any file stored by a normal putObject request has an etag that is generated through an md5 hash of the file. If multipart upload is used or the file is encrypted, then this does not hold true. This allows us to rely on the etag for fixity checks for now, but it must be kept in mind if other upload processes are used, or if Amazon changes how etags are calculated (however unlikely that may be)
