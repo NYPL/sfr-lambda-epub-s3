@@ -29,7 +29,6 @@ exports.parseRecords = async (records) => {
   return new Promise((resolve, reject) => {
     Promise.all(results).then((responses) => {
       responses.forEach((resp) => {
-        console.log(resp)
         ResHandler.resultHandler(resp)
       })
       resolve()
@@ -87,7 +86,7 @@ exports.parseRecord = (record) => {
           let reportBlock = exports.runAccessCheck(buffer, itemID)
           return resolve(reportBlock)
         })
-        .catch((error) => {
+        .catch((err) => {
           return resolve({
             "status": 500,
             "code": "Stream-to-Buffer Error",

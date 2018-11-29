@@ -103,7 +103,7 @@ describe('Handlers [index.js]', () => {
       checkStub = sinon.stub(Parser, 'checkForExisting')
       explodeStub = sinon.stub(Parser, 'epubExplode')
       bufferStub = sinon.stub(Parser, 'getBuffer')
-      accessStub = sinon.stub(AccessibilityChecker, 'runAccessibilityReport')
+      accessStub = sinon.stub(AccessibilityChecker, 'getAccessibilityReport')
 
       let gutenbergResp = nock('http://www.gutenberg.org')
         .persist()
