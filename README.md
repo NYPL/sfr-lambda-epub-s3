@@ -35,7 +35,27 @@ The accessibility reports are generated asynchronously (so that they don't block
 
 
 #### Note on md5 hash
-The hash of the file (generally only relevant for the archived .epub) is taken from the automatically generated "eTag" from s3. As noted in the s3 documentation (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html) any file stored by a normal putObject request has an etag that is generated through an md5 hash of the file. If multipart upload is used or the file is encrypted, then this does not hold true. This allows us to rely on the etag for fixity checks for now, but it must be kept in mind if other upload processes are used, or if Amazon changes how etags are calculated (however unlikely that may be)
+The hash of the file (generally only relevant for the archived .epub) is taken from the automatically generated "eTag" from s3. As noted in the [s3 documentation](https://docs.aws.amazon.com/AmazonS3/latest/API/RESTCommonResponseHeaders.html) any file stored by a normal putObject request has an etag that is generated through an md5 hash of the file. If multipart upload is used or the file is encrypted, then this does not hold true. This allows us to rely on the etag for fixity checks for now, but it must be kept in mind if other upload processes are used, or if Amazon changes how etags are calculated (however unlikely that may be)
 
-## Deployement
-This Lambda can be deployed using node-lambda and the scripts included in the package.json. It should be deployed to a Lambda of 256MB or larger as the 128MB size can lead to timeouts
+## Deployment
+This Lambda can be deployed using node-lambda and the scripts included in the package.json. It should be deployed to a Lambda of 256MB or larger as the 128MB size can lead to timeouts. Specific deployment instructions
+
+1. Set all environemnt variables in  the relevant config/\*.env file.
+2. Run `npm run test` and `npm run lint`
+3. Run `npm run deploy-[intended_env]` where intended_env is where the code should be deployed
+
+Alternatively, the code can be built locally and uploaded manually to AWS Lambda. To do so, follow steps 1 and 2 above and then:
+
+3. Run `npm run clean` to remove any local files (to ensure a clean build)
+4. Run `npm run build` to build a local copy
+5. Upload the resulting file in the `build` directory, to AWS to update the Lambda function
+
+## Testing
+Testing is done via sinon and mocha. To run the test suite run `npm run test`. To generate a coverage report run `npm run coverage`
+
+## Dependencies
+- aws-sdk @ 2.348.0
+- axios @ 0.18.0
+- lambda-env-vars @ 0.4.0
+- moment @ 2.22.2
+- unzip-stream @ 0.3.0
