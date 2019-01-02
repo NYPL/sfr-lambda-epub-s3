@@ -2,12 +2,15 @@ import axios from 'axios'
 import AccessibilityChecker from './src/accessibilityCheck'
 import Parser from './src/epubParsers'
 import ResHandler from './src/responseHandlers'
+import logger from './src/helpers/logger'
+import LambdaError from './src/helpers/error'
 
 const fileNameRegex = /[0-9]+[.]{1}epub[.]{1}(?:no|)images/
 
 var records
 
 exports.handler = async (event, context, callback) => {
+  logger.debug('Handling input events from Kinesis stream')
   records = event['Records']
   let resp
   if (!records || records.length < 1) {
@@ -24,7 +27,7 @@ exports.handler = async (event, context, callback) => {
   }
 }
 
-exports.parseRecords = async (records) => {
+exports.parseRecords = (records) => {
   let results = records.map(exports.parseRecord)
   return new Promise((resolve, reject) => {
     Promise.all(results).then((responses) => {
@@ -37,41 +40,76 @@ exports.parseRecords = async (records) => {
 }
 
 exports.runAccessCheck = async (zipData, itemID) => {
-  try{
+  try {
     let accessReport = await AccessibilityChecker.getAccessibilityReport(zipData)
     accessReport['id'] = itemID
     return {
-      "status": 200,
-      "code": "accessibility",
-      "message": "Created Accessibility Score",
-      "data": accessReport
+      'status': 200,
+      'code': 'accessibility',
+      'message': 'Created Accessibility Score',
+      'data': accessReport
     }
-  } catch(err) {
-    return {
-      "status": 500,
-      "code": "Accessibility Report Error",
-      "data": {
-        "id": itemID
-      },
-      "message": JSON.stringify(err, Object.getOwnPropertyNames(err))
-    }
+  } catch (err) {
+    logger.error('Failed to generate accessibility report for item')
+    logger.debug(err)
+    throw new LambdaError('Failed to generate Accessibility Report', {
+      'status': 500,
+      'code': 'accessibility-report'
+    })
   }
 }
 
 exports.parseRecord = (record) => {
-  let payload = JSON.parse(new Buffer.from(record.kinesis.data, 'base64').toString('ascii'))
+  let itemID, url, updated, fileName
+  return new Promise((resolve, reject) => {
+    try {
+      // Parse base64 json block received from event
+      let dataFields = exports.readFromKinesis(record.kinesis.data)
+      url = dataFields[0]
+      itemID = dataFields[1]
+      updated = dataFields[2]
+      fileName = dataFields[3]
+      // Take url and metadata and store object at address in S3
+      exports.storeFromURL(url, itemID, updated, fileName).then((res) => {
+        resolve(res)
+      }).catch(err => {
+        throw err
+      })
+    } catch (err) {
+      logger.error('Error in processing url')
+      logger.debug(err)
+      resolve({
+        'status': err.status,
+        'code': err.code,
+        'message': err.message,
+        'data': {
+          'item': itemID
+        }
+      })
+    }
+  })
+}
+
+exports.readFromKinesis = (record) => {
+  let dataBlock = JSON.parse(new Buffer.from(record, 'base64').toString('ascii'))
+  let payload = dataBlock['data']
   let url = payload['url']
   let fileNameMatch = fileNameRegex.exec(url)
   if (!fileNameMatch) {
-    return {
+    logger.error('Provided URL failed to match regular expression')
+    throw new LambdaError('Failed to extract file from url ' + url, {
       'status': 500,
-      'code': 'Regex Failure',
-      'message': 'Failed to extract file from url ' + url
-    }
+      'code': 'regex-failure'
+    })
   }
   let fileName = fileNameMatch[0]
   let itemID = payload['id']
   let updated = new Date(payload['updated'])
+  return [url, itemID, updated, fileName]
+}
+
+exports.storeFromURL = (url, itemID, updated, fileName) => {
+  logger.debug('Storing file from ' + url)
   return new Promise((resolve, reject) => {
     Parser.checkForExisting(fileName, updated).then((status) => {
       axios({
@@ -79,31 +117,33 @@ exports.parseRecord = (record) => {
         url: url,
         responseType: 'stream'
       })
-      .then((response) => {
-        Parser.epubExplode(fileName, itemID, updated, response)
-        Parser.getBuffer(response.data).then((buffer) => {
-          Parser.epubStore(fileName, itemID, updated, 'archive', buffer)
-          let reportBlock = exports.runAccessCheck(buffer, itemID)
-          return resolve(reportBlock)
-        })
-        .catch((err) => {
-          return resolve({
-            "status": 500,
-            "code": "Stream-to-Buffer Error",
-            "data": {
-              "id": itemID
-            },
-            "message": JSON.stringify(err, Object.getOwnPropertyNames(err))
+        .then((response) => {
+          Parser.epubExplode(fileName, itemID, updated, response)
+          Parser.getBuffer(response.data).then((buffer) => {
+            Parser.epubStore(fileName, itemID, updated, 'archive', buffer)
+            let reportBlock = exports.runAccessCheck(buffer, itemID)
+            return resolve(reportBlock)
           })
+            .catch((err) => {
+              if (err.name === 'LambdaError') { reject(err) }
+
+              logger.error('Error reading from stream data')
+              logger.debug(err)
+              reject(new LambdaError('Failed to read stream data from provided URL', {
+                'status': 500,
+                'code': 'stream-to-buffer'
+              }))
+            })
+        })
+    })
+      .catch((err) => {
+        logger.notice('Found existing file, no action necessary')
+        logger.debug(err)
+        return resolve({
+          'status': 200,
+          'code': 'existing',
+          'message': 'Found existing, up-to-date ePub'
         })
       })
-    })
-    .catch((err) => {
-      return resolve({
-        'status': 200,
-        'code': 'existing',
-        'message': 'Found existing, up-to-date ePub'
-      })
-    })
   })
 }

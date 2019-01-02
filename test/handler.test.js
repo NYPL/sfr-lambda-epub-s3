@@ -8,6 +8,7 @@ import Lambda from '../index.js'
 import ResHandler from '../src/responseHandlers.js'
 import Parser from '../src/epubParsers.js'
 import AccessibilityChecker from '../src/accessibilityCheck'
+import LambdaError from '../src/helpers/error'
 import moment from 'moment'
 chai.should()
 chai.use(sinonChai)
@@ -87,7 +88,7 @@ describe('Handlers [index.js]', () => {
   })
 
   describe('parseRecord(record)', () => {
-    let testRecord, testData, checkStub, explodeStub, bufferStub, accessStub
+    let testRecord, testData, readStub, storeStub
     beforeEach(() => {
       testData = {
         'url': 'http://www.gutenberg.org/ebooks/10.epub.images',
@@ -100,38 +101,38 @@ describe('Handlers [index.js]', () => {
         }
       }
 
-      checkStub = sinon.stub(Parser, 'checkForExisting')
-      explodeStub = sinon.stub(Parser, 'epubExplode')
-      bufferStub = sinon.stub(Parser, 'getBuffer')
-      accessStub = sinon.stub(AccessibilityChecker, 'getAccessibilityReport')
+      readStub = sinon.stub(Lambda, 'readFromKinesis')
+      storeStub = sinon.stub(Lambda, 'storeFromURL')
 
-      let gutenbergResp = nock('http://www.gutenberg.org')
-        .persist()
-        .get(/\/*/)
-        .reply(200, { 'data': 'Some Test Data' })
     })
 
     afterEach(() => {
-      checkStub.restore()
-      explodeStub.restore()
-      bufferStub.restore()
-      accessStub.restore()
+      readStub.restore()
+      storeStub.restore()
     })
 
-    it('should return 500 if URL is invalid/unexpected', () => {
+    it('should return error block for invalid URL', async () => {
       testData['url'] = 'http://www/gutenberg/org/notReal'
       testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
 
-      let resp = Lambda.parseRecord(testRecord)
-      expect(resp['status']).to.equal(500)
-      expect(resp['code']).to.equal('Regex Failure')
+      readStub.returns(['url', 1, '2018-01-01', 'fileName'])
+      storeStub.throws(new LambdaError('Bad URL', {
+        'status': 500,
+        'code': 'Regex Failure'
+      }))
+      try {
+        await Lambda.parseRecord(testRecord)
+      } catch (err) {
+        expect(err['status']).to.equal(500)
+        expect(err['code']).to.equal('Regex Failure')
+      }
     })
 
     it('should return existing message for non-modifed record', async () => {
       testData['updated'] = '1990-01-01'
       testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
 
-      checkStub.rejects('Out-of-date-file!')
+      storeStub.rejects('Out-of-date-file!')
       try {
         await Lambda.parseRecord(testRecord)
       } catch (e) {
@@ -143,27 +144,23 @@ describe('Handlers [index.js]', () => {
     it('should call ePubExplode, getBuffer and epubStore for success', async () => {
       testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
 
-      checkStub.resolves('status')
-      bufferStub.resolves('A Fake Buffer')
-      explodeStub.resolves('Exploded!')
-      accessStub.resolves({'data': 'data'})
-      let storeStub = sinon.stub(Parser, 'epubStore')
+      readStub.returns('status')
+      storeStub.resolves({ 'data': 'data' })
 
       await Lambda.parseRecord(testRecord)
-      expect(explodeStub).to.be.called
-      expect(bufferStub).to.be.called
+      expect(readStub).to.be.called
       expect(storeStub).to.be.called
-      expect(accessStub).to.be.called
 
-      storeStub.restore()
     })
 
     it('should return 500 if it cannot load a buffer from provided URL', async () => {
       testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
 
-      checkStub.resolves('status')
-      explodeStub.resolves('Exploded!')
-      bufferStub.rejects('Buffer Fail!')
+      readStub.returns('status')
+      storeStub.throws(new LambdaError('Bad URL', {
+        'status': 500,
+        'code': 'Stream-to-Buffer Error'
+      }))
 
       try {
         await Lambda.parseRecord(testRecord)
@@ -172,8 +169,150 @@ describe('Handlers [index.js]', () => {
         expect(e['code']).to.equal('Stream-to-Buffer Error')
       }
 
+    })
+  })
+
+  describe('readFromKinesis(record)', () => {
+    let testRecord, testData
+    beforeEach(() => {
+      testData = {
+        'data': {
+          'url': 'http://www.gutenberg.org/ebooks/10.epub.images',
+          'id': '10',
+          'updated': moment().format()
+        }
+      }
+      testRecord = {
+        'kinesis': {
+          'data': null
+        }
+      }
+
+    })
+
+    it('should return data fields', () => {
+      testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
+      let results = Lambda.readFromKinesis(testRecord.kinesis.data)
+      expect(results[0]).to.equal('http://www.gutenberg.org/ebooks/10.epub.images')
+      expect(results[1]).to.equal('10')
+      expect(results[2]).to.deep.equal(new Date(testData['data']['updated']))
+    })
+
+    it('should throw LambdaError if regex match fails', () => {
+      testData['data']['url'] = 'http://www/gutenberg/org/notReal'
+      testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
+      try {
+        results = Lambda.readFromKinesis(testRecord.kinesis.data)
+      } catch(err) {
+        expect(err.status).to.equal(500)
+        expect(err.code).to.equal('regex-failure')
+      }
+    })
+  })
+
+  describe('storeFromURL(url, itemID, updated, fileName)', () => {
+    let explodeStub, bufferStub, storeStub, accessStub, checkStub
+    beforeEach(() => {
+      checkStub = sinon.stub(Parser, 'checkForExisting')
+      explodeStub = sinon.stub(Parser, 'epubExplode')
+      bufferStub = sinon.stub(Parser, 'getBuffer')
+      storeStub = sinon.stub(Parser, 'epubStore')
+      accessStub = sinon.stub(Lambda, 'runAccessCheck')
+    })
+
+    afterEach(() => {
+      checkStub.restore()
       explodeStub.restore()
       bufferStub.restore()
+      storeStub.restore()
+      accessStub.restore()
+    })
+
+    it('should resolve an access report on successful put operation', async () => {
+      let url = 'http://www.gutenberg.org/10'
+      let itemID = '10'
+      let updated = '2019-01-01'
+      let fileName = 'fileName'
+      checkStub.resolves('dataObject')
+      bufferStub.resolves('bufferObject')
+      accessStub.returns({
+        'status': 200,
+        'code': 'accessibility'
+      })
+
+      let apiResp = nock('http://www.gutenberg.org')
+        .get('/10')
+        .reply(200, { 'message': 'Success' })
+
+      let response = await Lambda.storeFromURL(url, itemID, updated, fileName)
+      expect(checkStub).to.be.called
+      expect(explodeStub).to.be.called
+      expect(bufferStub).to.be.called
+      expect(storeStub).to.be.called
+      expect(accessStub).to.be.called
+      expect(response['code']).to.equal('accessibility')
+    })
+
+    it('should resolve a status of existing if a file is found', async () => {
+
+      let url = 'http://www.gutenberg.org/10'
+      let itemID = '10'
+      let updated = '2019-01-01'
+      let fileName = 'fileName'
+
+      checkStub.rejects('existing')
+      let response = await Lambda.storeFromURL(url, itemID, updated, fileName)
+
+      expect(checkStub).to.be.called
+      expect(response['code']).to.equal('existing')
+    })
+
+    it('should throw a LambdaError if a parsing error occurs', () => {
+      let url = 'http://www.gutenberg.org/10'
+      let itemID = '10'
+      let updated = '2019-01-01'
+      let fileName = 'fileName'
+      checkStub.resolves('dataObject')
+      bufferStub.rejects('readError')
+
+      let apiResp = nock('http://www.gutenberg.org')
+        .get('/10')
+        .reply(200, { 'message': 'Success' })
+
+      Lambda.storeFromURL(url, itemID, updated, fileName).then((resp) => {
+        console.log('hello')
+      }).catch((err) => {
+        expect(err['code']).to.equal('stream-to-buffer')
+      })
+    })
+  })
+
+  describe('runAccessCheck(zipData, itemID)', () => {
+    let reportStub
+    beforeEach(() => {
+      reportStub = sinon.stub(AccessibilityChecker, 'getAccessibilityReport')
+    })
+
+    afterEach(() => {
+      reportStub.restore()
+    })
+
+    it('should return 200 on successful report generation', async () => {
+      reportStub.resolves({'data': 'reportData'})
+      let response = await Lambda.runAccessCheck('data', '10')
+      expect(reportStub).to.be.called
+      expect(response['code']).to.equal('accessibility')
+      expect(response['data']['data']).to.equal('reportData')
+    })
+
+    it('should return 500 on report generation failure', async () => {
+      reportStub.rejects('error')
+      try {
+        let response = await Lambda.runAccessCheck('data', '10')
+      } catch (err) {
+        expect(err.status).to.equal(500)
+        expect(err.code).to.equal('accessibility-report')
+      }
     })
   })
 })
