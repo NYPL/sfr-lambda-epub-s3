@@ -39,14 +39,20 @@ exports.parseRecords = (records) => {
   })
 }
 
-exports.runAccessCheck = async (zipData, itemID) => {
+exports.runAccessCheck = async (zipData, instanceID, fileName, source) => {
   try {
     let accessReport = await AccessibilityChecker.getAccessibilityReport(zipData)
-    accessReport['id'] = itemID
+    accessReport['instance_id'] = instanceID
+    accessReport['identifier'] = {
+      'type': source,
+      'identifier': fileName
+    }
     return {
       'status': 200,
       'code': 'accessibility',
       'message': 'Created Accessibility Score',
+      'type': 'access_report',
+      'method': 'insert',
       'data': accessReport
     }
   } catch (err) {
@@ -60,17 +66,18 @@ exports.runAccessCheck = async (zipData, itemID) => {
 }
 
 exports.parseRecord = (record) => {
-  let itemID, url, updated, fileName
+  let instanceID, url, updated, fileName, itemData
   return new Promise((resolve, reject) => {
     try {
       // Parse base64 json block received from event
       let dataFields = exports.readFromKinesis(record.kinesis.data)
       url = dataFields[0]
-      itemID = dataFields[1]
+      instanceID = dataFields[1]
       updated = dataFields[2]
       fileName = dataFields[3]
+      itemData = dataFields[4]
       // Take url and metadata and store object at address in S3
-      exports.storeFromURL(url, itemID, updated, fileName).then((res) => {
+      exports.storeFromURL(url, instanceID, updated, fileName, itemData).then((res) => {
         resolve(res)
       }).catch(err => {
         throw err
@@ -103,12 +110,13 @@ exports.readFromKinesis = (record) => {
     })
   }
   let fileName = fileNameMatch[0]
-  let itemID = payload['id']
+  let instanceID = payload['id']
   let updated = new Date(payload['updated'])
-  return [url, itemID, updated, fileName]
+  let itemData = payload['data']
+  return [url, instanceID, updated, fileName, itemData]
 }
 
-exports.storeFromURL = (url, itemID, updated, fileName) => {
+exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
   logger.debug('Storing file from ' + url)
   return new Promise((resolve, reject) => {
     Parser.checkForExisting(fileName, updated).then((status) => {
@@ -118,10 +126,10 @@ exports.storeFromURL = (url, itemID, updated, fileName) => {
         responseType: 'stream'
       })
         .then((response) => {
-          Parser.epubExplode(fileName, itemID, updated, response)
+          Parser.epubExplode(fileName, instanceID, updated, response, itemData)
           Parser.getBuffer(response.data).then((buffer) => {
-            Parser.epubStore(fileName, itemID, updated, 'archive', buffer)
-            let reportBlock = exports.runAccessCheck(buffer, itemID)
+            Parser.epubStore(fileName, instanceID, updated, 'archive', buffer, itemData)
+            let reportBlock = exports.runAccessCheck(buffer, instanceID, fileName, itemData['source'])
             return resolve(reportBlock)
           })
             .catch((err) => {

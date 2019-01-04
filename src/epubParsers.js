@@ -52,15 +52,15 @@ exports.getBuffer = (stream) => {
   })
 }
 
-exports.epubStore = (fileName, itemID, updated, type, response) => {
+exports.epubStore = (partName, instanceID, updated, type, response, itemData, fileName) => {
   logger.info('Storing file in S3')
   let putData, putKey
   if (type === 'archive') {
     putData = response
-    putKey = 'epub_test/' + fileName
+    putKey = 'epub_test/' + partName
   } else {
     putData = response
-    putKey = 'expl_test/' + fileName
+    putKey = 'expl_test/' + partName
   }
   let putParams = {
     Body: putData,
@@ -68,6 +68,7 @@ exports.epubStore = (fileName, itemID, updated, type, response) => {
     Key: putKey,
     ACL: 'public-read'
   }
+  fileName = fileName || partName
   let uploadProm = S3.upload(putParams).promise()
   uploadProm.then((data) => {
     if (type === 'archive' || type === 'explMain') {
@@ -75,12 +76,26 @@ exports.epubStore = (fileName, itemID, updated, type, response) => {
         'status': 200,
         'code': 'stored',
         'message': 'Stored ePub',
+        'type': 'item',
+        'method': 'insert',
         'data': {
-          'type': type,
-          'etag': data['ETag'],
-          'url': data['Location'],
-          'id': itemID,
-          'date_updated': updated.toISOString()
+          'content_type': 'ebook',
+          'source': itemData['source'],
+          'drm': itemData['drm'],
+          'rights_uri': itemData['rights_uri'],
+          'instance_id': instanceID,
+          'modified': updated.toISOString(),
+          'identifier': {
+            'type': itemData['source'],
+            'identifier': fileName
+          },
+          'link': {
+            'url': data['Location'],
+            'md5': data['ETag'],
+            'rel_type': type,
+            'media_type': 'application/epub+zip'
+          },
+          'measurements': itemData['measurements']
         }
       }
       ResHandler.resultHandler(handleResp)
@@ -98,7 +113,7 @@ exports.epubStore = (fileName, itemID, updated, type, response) => {
     })
 }
 
-exports.epubExplode = (fileName, itemID, updated, response) => {
+exports.epubExplode = (fileName, itemID, updated, response, itemData) => {
   logger.info('Exploding archived ePub file')
   try {
     response.data.pipe(unzip.Parse())
@@ -106,7 +121,7 @@ exports.epubExplode = (fileName, itemID, updated, response) => {
         let partName = fileName + '/' + entry.path
         let putType = 'explPart'
         if (entry.path.includes('content.opf')) putType = 'explMain'
-        exports.epubStore(partName, itemID, updated, putType, entry)
+        exports.epubStore(partName, itemID, updated, putType, entry, itemData, fileName)
       })
   } catch (err) {
     logger.error('Could not unzip ePub archive!')
