@@ -8,13 +8,4 @@ cache:
   - node_modules
 after_success:
 - ENVIRONMENT_NAME=$TRAVIS_BRANCH
-- if [ "$TRAVIS_BRANCH" == "master" ]; then ENVIRONMENT_NAME=productionl; fi
-deploy:
-- provider: script
-  skip_cleanup: true
-  script: "./scripts/travis-deploy.sh $ENVIRONMENT_NAME"
-  on:
-    branch: development
-env:
-  global:
-    secure: vLkuc/NMb3XJ84VlxTjYB3n5Okgkri4NxzCnh2QQX7Gs4rlA4tfmgCdmlEe4KeH27t8FIbvyZRG4QkBI8GiVpezQu63USkK6RJgHcBgHAXPYBAn8HvavJJbF9P9H0B0ZMExGs1i2JRreUSDRtt+FeNstytdGPjCiXEvJsBRQENaMzt71ivX5ZEE0orv3ielaCfzvOArKDWml1iR5h3CNDaBbLkPimO/wQRTf+fSjADAtHJkgH+7F7TgZcDixets2/RYWK6onfog8/YsY0Io6WwSE18+nhg31Mn02MQKT8FN67bu7xUMZaXXcAnBsWlnDjsQJ4+VJaHUbixPSTvgsiV8cbLrxf6tlxpJKQwboTIWNVGZdtRaWVtkph9y1QzuhmAyVlBsSlwnDSSbw+GHpyvR6vH2I03N0fdhaQ+XFGXX3DzLRoGef9LxjQZrYYZRUr8mCzffBidDX/oad/ZXizqsmkSYZwDoiCgGh4ND4MFvX3wM4flAC1eSXE2e7Bpo9agdpuds7fq1MEHvvUc7br5qyV3Gh7VsFhQrIAVSLhhOkxzX/TqHcDBiLSN8K14j94O2Hl9umdBd2kjABHZbSGmdRKpfRHN9ZkSYdemIcVCwWvCf2eaSDX6xHykS2Vb3UsqgFb38ydM0p2StZQ2qeVLcSAwulJ89FxYwnUbL+b5Q=
+- if [ "$TRAVIS_BRANCH" == "master" ]; then ENVIRONMENT_NAME=production; fi
