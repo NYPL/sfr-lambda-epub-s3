@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk'
+import logger from './helpers/logger'
 
 AWS.config.update({
   region: 'us-east-1',
@@ -22,8 +23,9 @@ exports.resultHandler = (handleResp) => {
   }
   let kinesisOut = kinesis.putRecord(outParams).promise()
   kinesisOut.then((data) => {
-    console.log('Wrote Result to Kinesis stream')
+    logger.notice('Wrote Result to Kinesis stream')
   }).catch((err) => {
-    console.log('FAILED TO PUT TO KINESIS')
+    logger.error('FAILED TO PUT TO KINESIS')
+    logger.debug(err)
   })
 }
