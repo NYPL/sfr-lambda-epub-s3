@@ -111,63 +111,50 @@ describe('Handlers [index.js]', () => {
       storeStub.restore()
     })
 
-    it('should return error block for invalid URL', async () => {
-      testData['url'] = 'http://www/gutenberg/org/notReal'
+    it('should resolve response object with successful call', async () => {
       testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
 
-      readStub.returns(['url', 1, '2018-01-01', 'fileName'])
+      readStub.returns(['url', 1, '2018-01-01', 'fileName', {'data': 'block'}])
+      storeStub.resolves({
+        'status': 200,
+        'code': 'store_success'
+      })
+      let resp = await Lambda.parseRecord(testRecord)
+      expect(resp['status']).to.equal(200)
+      expect(resp['code']).to.equal('store_success')
+    })
+
+    it('should throw error if file storage fails', async () => {
+      testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
+
+      readStub.returns(['url', 1, '2018-01-01', 'fileName', {'data': 'block'}])
       storeStub.throws(new LambdaError('Bad URL', {
         'status': 500,
-        'code': 'Regex Failure'
+        'code': 'buffer_error'
       }))
+
       try {
-        await Lambda.parseRecord(testRecord)
+        Lambda.parseRecord(testRecord)
       } catch (err) {
         expect(err['status']).to.equal(500)
-        expect(err['code']).to.equal('Regex Failure')
+        expect(err['code']).to.equal('buffer_error')
       }
     })
 
-    it('should return existing message for non-modifed record', async () => {
-      testData['updated'] = '1990-01-01'
+    it('should resolve error if cannot read Kinesis object', async () => {
       testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
 
-      storeStub.rejects('Out-of-date-file!')
-      try {
-        await Lambda.parseRecord(testRecord)
-      } catch (e) {
-        expect(e['status']).to.equal(200)
-        expect(e['code']).to.equal('existing')
-      }
-    })
-
-    it('should call ePubExplode, getBuffer and epubStore for success', async () => {
-      testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
-
-      readStub.returns('status')
-      storeStub.resolves({ 'data': 'data' })
-
-      await Lambda.parseRecord(testRecord)
-      expect(readStub).to.be.called
-      expect(storeStub).to.be.called
-
-    })
-
-    it('should return 500 if it cannot load a buffer from provided URL', async () => {
-      testRecord['kinesis']['data'] = Buffer.from(JSON.stringify(testData)).toString('base64')
-
-      readStub.returns('status')
-      storeStub.throws(new LambdaError('Bad URL', {
+      readStub.throws({
         'status': 500,
-        'code': 'Stream-to-Buffer Error'
-      }))
-
+        'code': 'invalid_url'
+      })
       try {
-        await Lambda.parseRecord(testRecord)
-      } catch (e) {
-        expect(e['status']).to.equal(500)
-        expect(e['code']).to.equal('Stream-to-Buffer Error')
+        Lambda.parseRecord(testRecord)
+      } catch (err) {
+        expect(err['status']).to.equal(500)
+        expect(err['code']).to.equal('invalid_url')
       }
+
 
     })
   })
@@ -234,7 +221,9 @@ describe('Handlers [index.js]', () => {
       let updated = '2019-01-01'
       let fileName = 'fileName'
       checkStub.resolves('dataObject')
+      explodeStub.resolves('success')
       bufferStub.resolves('bufferObject')
+      storeStub.resolves('succeess')
       accessStub.returns({
         'status': 200,
         'code': 'accessibility'
@@ -242,9 +231,9 @@ describe('Handlers [index.js]', () => {
 
       let apiResp = nock('http://www.gutenberg.org')
         .get('/10')
-        .reply(200, { 'message': 'Success' })
+        .reply(200, { 'data': 'streamObject' })
 
-      let response = await Lambda.storeFromURL(url, itemID, updated, fileName)
+      let response = await Lambda.storeFromURL(url, itemID, updated, fileName, {'source': 'test'})
       expect(checkStub).to.be.called
       expect(explodeStub).to.be.called
       expect(bufferStub).to.be.called

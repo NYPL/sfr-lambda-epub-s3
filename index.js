@@ -90,7 +90,7 @@ exports.parseRecord = (record) => {
         'code': err.code,
         'message': err.message,
         'data': {
-          'item': itemID
+          'item': instanceID
         }
       })
     }
