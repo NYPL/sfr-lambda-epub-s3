@@ -248,12 +248,19 @@ describe('Handlers [index.js]', () => {
       let itemID = '10'
       let updated = '2019-01-01'
       let fileName = 'fileName'
+      let itemData = {
+        'source': 'test',
+        'drm': 'drm',
+        'rights_uri': 'rights_uri',
+        'measurements': []
+      }
 
       checkStub.rejects('existing')
-      let response = await Lambda.storeFromURL(url, itemID, updated, fileName)
+      let response = await Lambda.storeFromURL(url, itemID, updated, fileName, itemData)
 
       expect(checkStub).to.be.called
       expect(response['code']).to.equal('existing')
+      expect(response['data']['source']).to.equal('test')
     })
 
     it('should throw a LambdaError if a parsing error occurs', () => {
