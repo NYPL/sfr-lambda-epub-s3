@@ -150,7 +150,20 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
         return resolve({
           'status': 200,
           'code': 'existing',
-          'message': 'Found existing, up-to-date ePub'
+          'method': 'update',
+          'message': 'Found existing, up-to-date ePub',
+          'data': {
+            'content_type': 'ebook',
+            'source': itemData['source'],
+            'drm': itemData['drm'],
+            'rights_uri': itemData['rights_uri'],
+            'instance_id': instanceID,
+            'identifier': {
+              'type': itemData['source'],
+              'identifier': fileName
+            },
+            'measurements': itemData['measurements']
+          }
         })
       })
   })
