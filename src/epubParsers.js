@@ -53,7 +53,7 @@ exports.getBuffer = (stream) => {
 }
 
 exports.epubStore = (partName, instanceID, updated, type, response, itemData, fileName) => {
-  logger.info('Storing file in S3')
+  logger.info('Storing ' + partName + ' in S3')
   let putData, putKey
   if (type === 'archive') {
     putData = response
