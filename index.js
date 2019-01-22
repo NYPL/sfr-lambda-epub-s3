@@ -99,7 +99,8 @@ exports.parseRecord = (record) => {
 
 exports.readFromKinesis = (record) => {
   const dataBlock = JSON.parse(new Buffer.from(record, 'base64').toString('ascii'))
-  const { payload, url } = dataBlock
+  const payload = dataBlock.data
+  const { url } = payload
   const fileNameMatch = fileNameRegex.exec(url)
   if (!fileNameMatch) {
     logger.error('Provided URL failed to match regular expression')
@@ -154,6 +155,7 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
         return resolve({
           status: 200,
           code: 'existing',
+          type: 'item',
           method: 'update',
           message: 'Found existing, up-to-date ePub',
           data: {
