@@ -8,7 +8,12 @@ exports.getAccessibilityReport = (buf, instID, ident) => {
       identifier: ident,
       epubData: JSON.parse(jsonBuf),
     }
-    axios.post(process.env.SFR_ACCESSIBILITY_API, reportBlock).then((response) => {
+    axios({
+      method: 'post',
+      url: process.env.SFR_ACCESSIBILITY_API,
+      data: reportBlock,
+      maxContentLength: 52428890,
+    }).then((response) => {
       resolve(response.data)
     }).catch((err) => {
       reject(err)
