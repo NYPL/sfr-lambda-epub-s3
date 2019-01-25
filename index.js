@@ -32,7 +32,8 @@ exports.parseRecords = () => {
   return new Promise((resolve) => {
     Promise.all(results).then((responses) => {
       responses.forEach((resp) => {
-        ResHandler.resultHandler(resp)
+        logger.notice('Completed epub processing')
+        logger.debug(JSON.stringify(resp))
       })
       resolve()
     })
@@ -41,20 +42,12 @@ exports.parseRecords = () => {
 
 exports.runAccessCheck = async (zipData, instanceID, fileName, source) => {
   try {
-    const accessReport = await AccessibilityChecker.getAccessibilityReport(zipData)
-    accessReport.instance_id = instanceID
-    accessReport.identifier = {
+    const identifier = {
       type: source,
       identifier: fileName,
     }
-    return {
-      status: 200,
-      code: 'accessibility',
-      message: 'Created Accessibility Score',
-      type: 'access_report',
-      method: 'insert',
-      data: accessReport,
-    }
+    const reportStatus = await AccessibilityChecker.getAccessibilityReport(zipData, instanceID, identifier)
+    return reportStatus
   } catch (err) {
     logger.error('Failed to generate accessibility report for item')
     logger.debug(err)
@@ -85,14 +78,16 @@ exports.parseRecord = (record) => {
     } catch (err) {
       logger.error('Error in processing url')
       logger.debug(err)
-      resolve({
+      const errReport = {
         status: err.status,
         code: err.code,
         message: err.message,
         data: {
           item: instanceID,
         },
-      })
+      }
+      ResHandler.resultHandler(errReport)
+      resolve(errReport)
     }
   })
 }
@@ -129,13 +124,13 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
           Parser.epubExplode(fileName, instanceID, updated, response, itemData)
           Parser.getBuffer(response.data).then((buffer) => {
             Parser.epubStore(fileName, instanceID, updated, 'archive', buffer, itemData)
-            const reportBlock = exports.runAccessCheck(
+            const reportStatus = exports.runAccessCheck(
               buffer,
               instanceID,
               fileName,
               itemData.source,
             )
-            return resolve(reportBlock)
+            return resolve(reportStatus)
           })
             .catch((err) => {
               if (err.name === 'LambdaError') { reject(err) }
