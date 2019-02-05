@@ -157,12 +157,12 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
             content_type: 'ebook',
             source: itemData.source,
             drm: itemData.drm,
-            rights_uri: itemData.rights_uri,
+            rights: itemData.rights,
             instance_id: instanceID,
-            identifier: {
+            identifiers: [{
               type: itemData.source,
               identifier: fileName,
-            },
+            }],
             measurements: itemData.measurements,
           },
         })

@@ -83,19 +83,19 @@ exports.epubStore = (partName, instanceID, updated, type, response, itemData, fi
           content_type: 'ebook',
           source: itemData.source,
           drm: itemData.drm,
-          rights_uri: itemData.rights_uri,
+          rights: itemData.rights,
           instance_id: instanceID,
           modified: updated.toISOString(),
-          identifier: {
+          identifiers: [{
             type: itemData.source,
             identifier: outputFile,
-          },
-          link: {
+          }],
+          links: [{
             url: data.Location,
             md5: data.ETag,
             rel_type: type,
             media_type: 'application/epub+zip',
-          },
+          }],
           measurements: itemData.measurements,
         },
       }
