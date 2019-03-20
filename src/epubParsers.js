@@ -22,7 +22,7 @@ exports.checkForExisting = (fileName, updated) => {
   return new Promise((resolve, reject) => {
     const headParams = {
       Bucket: process.env.AWS_S3_EPUB_BUCKET,
-      Key: 'epub_test/' + fileName,
+      Key: process.env.S3_ARCHIVE_FOLDER + '/' + fileName,
       IfUnmodifiedSince: updated,
     }
     const fileCheck = S3.headObject(headParams).promise()
@@ -58,10 +58,10 @@ exports.epubStore = (partName, instanceID, updated, type, response, itemData, fi
   let putKey
   if (type === 'archive') {
     putData = response
-    putKey = 'epub_test/' + partName
+    putKey = process.env.S3_ARCHIVE_FOLDER + '/' + partName
   } else {
     putData = response
-    putKey = 'expl_test/' + partName
+    putKey = process.env.S3_EXPLODE_FOLDER + '/' + partName
   }
   const putParams = {
     Body: putData,
