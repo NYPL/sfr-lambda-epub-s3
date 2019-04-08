@@ -3,6 +3,8 @@ import unzip from 'unzip-stream'
 import ResHandler from './responseHandlers'
 import logger from './helpers/logger'
 
+import { runAccessCheck } from './accessibilityCheck'
+
 AWS.config.update({
   region: 'us-east-1',
   logger: process.stdout,
@@ -22,7 +24,7 @@ exports.checkForExisting = (fileName, updated) => {
   return new Promise((resolve, reject) => {
     const headParams = {
       Bucket: process.env.AWS_S3_EPUB_BUCKET,
-      Key: process.env.S3_ARCHIVE_FOLDER + '/' + fileName,
+      Key: `${process.env.S3_ARCHIVE_FOLDER}/${fileName}`,
       IfUnmodifiedSince: updated,
     }
     const fileCheck = S3.headObject(headParams).promise()
@@ -53,15 +55,15 @@ exports.getBuffer = (stream) => {
 }
 
 exports.epubStore = (partName, instanceID, updated, type, response, itemData, fileName) => {
-  logger.info('Storing ' + partName + ' in S3')
+  logger.info(`Storing ${partName} in S3`)
   let putData
   let putKey
   if (type === 'archive') {
     putData = response
-    putKey = process.env.S3_ARCHIVE_FOLDER + '/' + partName
+    putKey = `${process.env.S3_ARCHIVE_FOLDER}/${partName}`
   } else {
     putData = response
-    putKey = process.env.S3_EXPLODE_FOLDER + '/' + partName
+    putKey = `${process.env.S3_EXPLODE_FOLDER}/${partName}`
   }
   const putParams = {
     Body: putData,
@@ -98,6 +100,14 @@ exports.epubStore = (partName, instanceID, updated, type, response, itemData, fi
           }],
           measurements: itemData.measurements,
         },
+      }
+      if (type === 'archive') {
+        runAccessCheck(
+          data.Location,
+          instanceID,
+          fileName,
+          itemData.source,
+        )
       }
       ResHandler.resultHandler(handleResp)
     } else {

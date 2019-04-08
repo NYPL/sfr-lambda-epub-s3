@@ -1,22 +1,40 @@
 import axios from 'axios'
 
-exports.getAccessibilityReport = (buf, instID, ident) => {
+import logger from './helpers/logger'
+import LambdaError from './helpers/error'
+import { sqsHandler } from './responseHandlers'
+
+exports.runAccessCheck = async (fileKey, instanceID, fileName, source) => {
+  try {
+    const identifier = {
+      type: source,
+      identifier: fileName,
+    }
+    const reportStatus = await exports.createAccessibilityReport(fileKey, instanceID, identifier)
+    return reportStatus
+  } catch (err) {
+    logger.error('Failed to generate accessibility report for item')
+    logger.debug(err)
+    throw new LambdaError('Failed to generate Accessibility Report', {
+      status: 500,
+      code: 'accessibility-report',
+    })
+  }
+}
+
+exports.createAccessibilityReport = (key, instID, ident) => {
   return new Promise((resolve, reject) => {
-    const jsonBuf = JSON.stringify(buf)
     const reportBlock = {
       instanceID: instID,
       identifier: ident,
-      epubData: JSON.parse(jsonBuf),
+      fileKey: key,
     }
-    axios({
-      method: 'post',
-      url: process.env.SFR_ACCESSIBILITY_API,
-      data: reportBlock,
-      maxContentLength: 52428890,
-    }).then((response) => {
-      resolve(response.data)
-    }).catch((err) => {
-      reject(err)
-    })
+    try {
+      resolve(sqsHandler(reportBlock))
+    } catch (e) {
+      logger.error(e, e.stack)
+      reject(e.message)
+    }
+    
   })
 }

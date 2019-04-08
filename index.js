@@ -1,5 +1,4 @@
 import axios from 'axios'
-import AccessibilityChecker from './src/accessibilityCheck'
 import Parser from './src/epubParsers'
 import ResHandler from './src/responseHandlers'
 import logger from './src/helpers/logger'
@@ -40,24 +39,6 @@ exports.parseRecords = () => {
   })
 }
 
-exports.runAccessCheck = async (zipData, instanceID, fileName, source) => {
-  try {
-    const identifier = {
-      type: source,
-      identifier: fileName,
-    }
-    const reportStatus = await AccessibilityChecker.getAccessibilityReport(zipData, instanceID, identifier)
-    return reportStatus
-  } catch (err) {
-    logger.error('Failed to generate accessibility report for item')
-    logger.debug(err)
-    throw new LambdaError('Failed to generate Accessibility Report', {
-      status: 500,
-      code: 'accessibility-report',
-    })
-  }
-}
-
 exports.parseRecord = (record) => {
   let url = null
   let instanceID = null
@@ -72,7 +53,7 @@ exports.parseRecord = (record) => {
       // Take url and metadata and store object at address in S3
       exports.storeFromURL(url, instanceID, updated, fileName, itemData).then((res) => {
         resolve(res)
-      }).catch(err => {
+      }).catch((err) => {
         throw err
       })
     } catch (err) {
@@ -124,13 +105,10 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
           Parser.epubExplode(fileName, instanceID, updated, response, itemData)
           Parser.getBuffer(response.data).then((buffer) => {
             Parser.epubStore(fileName, instanceID, updated, 'archive', buffer, itemData)
-            const reportStatus = exports.runAccessCheck(
-              buffer,
-              instanceID,
-              fileName,
-              itemData.source,
-            )
-            return resolve(reportStatus)
+            return resolve({
+              message: 'Storing/Scoring Epub',
+              status: 200,
+            })
           })
             .catch((err) => {
               if (err.name === 'LambdaError') { reject(err) }
