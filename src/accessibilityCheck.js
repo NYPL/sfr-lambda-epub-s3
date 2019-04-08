@@ -1,5 +1,3 @@
-import axios from 'axios'
-
 import logger from './helpers/logger'
 import LambdaError from './helpers/error'
 import { sqsHandler } from './responseHandlers'
@@ -30,7 +28,7 @@ exports.createAccessibilityReport = (key, instID, ident) => {
       fileKey: key,
     }
     try {
-      resolve(sqsHandler(reportBlock))
+      resolve(sqsHandler(reportBlock, process.env.ACE_REPORT_QUEUE))
     } catch (e) {
       logger.error(e, e.stack)
       reject(e.message)

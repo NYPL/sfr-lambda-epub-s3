@@ -80,7 +80,7 @@ exports.readFromKinesis = (record) => {
   const fileNameMatch = fileNameRegex.exec(url)
   if (!fileNameMatch) {
     logger.error('Provided URL failed to match regular expression')
-    throw new LambdaError('Failed to extract file from url ' + url, {
+    throw new LambdaError(`Failed to extract file from url ${url}`, {
       status: 500,
       code: 'regex-failure',
     })
@@ -93,7 +93,7 @@ exports.readFromKinesis = (record) => {
 }
 
 exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
-  logger.debug('Storing file from ' + url)
+  logger.debug(`Storing file from ${url}`)
   return new Promise((resolve, reject) => {
     Parser.checkForExisting(fileName, updated).then(() => {
       axios({

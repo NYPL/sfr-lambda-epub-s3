@@ -103,9 +103,9 @@ exports.epubStore = (partName, instanceID, updated, type, response, itemData, fi
       }
       if (type === 'archive') {
         runAccessCheck(
-          data.Location,
+          data.Key,
           instanceID,
-          fileName,
+          outputFile,
           itemData.source,
         )
       }

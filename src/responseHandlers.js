@@ -31,19 +31,16 @@ exports.resultHandler = (handleResp) => {
   })
 }
 
-exports.sqsHandler = (handleMsg) => {
+exports.sqsHandler = (handleMsg, queue) => {
   const outMsg = JSON.stringify(handleMsg)
   const msgParams = {
     MessageBody: outMsg,
-    QueueUrl: process.env.ACE_REPORT_QUEUE,
+    QueueUrl: queue,
     DelaySeconds: 0,
-    MessageAttributes: {
-      DataType: 'String',
-    },
   }
 
   sqs.sendMessage(msgParams, (err, data) => {
     if (err) throw err
     else return data
-  }
+  })
 }
