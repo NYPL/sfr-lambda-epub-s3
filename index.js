@@ -6,14 +6,12 @@ import LambdaError from './src/helpers/error'
 
 const fileNameRegex = /[0-9]+[.]{1}epub[.]{1}(?:no|)images/
 
-let records
-
 exports.handler = async (event, context, callback) => {
   logger.debug('Handling input events from Kinesis stream')
-  records = event.Records;
-  let resp;
+  const records = event.Records;
+
   if (!records || records.length < 1) {
-    resp = {
+    const resp = {
       status: 500,
       code: 'missing_records',
       message: 'No records found in event',
@@ -26,7 +24,7 @@ exports.handler = async (event, context, callback) => {
   return callback(null, 'Successfully parsed records')
 }
 
-exports.parseRecords = () => {
+exports.parseRecords = (records) => {
   const results = records.map(exports.parseRecord)
   return new Promise((resolve) => {
     Promise.all(results).then((responses) => {
@@ -105,8 +103,9 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
           Parser.epubExplode(fileName, instanceID, updated, response, itemData)
           Parser.getBuffer(response.data).then((buffer) => {
             Parser.epubStore(fileName, instanceID, updated, 'archive', buffer, itemData)
-            return resolve({
+            resolve({
               message: 'Storing/Scoring Epub',
+              code: 'success',
               status: 200,
             })
           })

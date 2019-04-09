@@ -8,8 +8,7 @@ exports.runAccessCheck = async (fileKey, instanceID, fileName, source) => {
       type: source,
       identifier: fileName,
     }
-    const reportStatus = await exports.createAccessibilityReport(fileKey, instanceID, identifier)
-    return reportStatus
+    return await exports.createAccessibilityReport(fileKey, instanceID, identifier)
   } catch (err) {
     logger.error('Failed to generate accessibility report for item')
     logger.debug(err)
@@ -31,8 +30,7 @@ exports.createAccessibilityReport = (key, instID, ident) => {
       resolve(sqsHandler(reportBlock, process.env.ACE_REPORT_QUEUE))
     } catch (e) {
       logger.error(e, e.stack)
-      reject(e.message)
+      reject(e)
     }
-    
   })
 }
