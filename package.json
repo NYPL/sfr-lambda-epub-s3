@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "clean": "./node_modules/.bin/rimraf dist",
-    "test": "NODE_ENV=test SFR_ACCESSIBILITY_API=http://10.229.7.85/generate_report ./node_modules/.bin/nyc --reporter=lcov --reporter=text ./node_modules/mocha/bin/mocha",
+    "test": "NODE_ENV=test ./node_modules/.bin/nyc --reporter=lcov --reporter=text ./node_modules/mocha/bin/mocha",
     "build": "npm run clean && babel index.js --out-dir dist && babel src --out-dir dist/src",
     "local-run": "npm run build && ./node_modules/.bin/node-lambda run -j ./event.json -f ./config/local.env --handler dist/index.handler",
     "deploy-development": "npm run build && ./node_modules/.bin/node-lambda deploy -e development -f ./config/dev.env -S config/event_sources_dev.json --handler dist/index.handler -P nypl-sandbox",
@@ -26,19 +26,22 @@
   },
   "dependencies": {
     "aws-sdk": "^2.348.0",
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "lambda-env-vars": "^0.4.0",
     "moment": "^2.22.2",
+    "npm": "^6.9.0",
     "unzip-stream": "^0.3.0",
     "winston": "^3.1.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-istanbul": "^5.1.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
-    "babel-runtime": "^6.26.0",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
+    "@babel/traverse": "^7.4.5",
+    "babel-plugin-istanbul": "^5.1.4",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.2",
@@ -48,15 +51,15 @@
     "mocha": "^5.2.0",
     "nock": "^10.0.2",
     "node-lambda": "^0.12.0",
-    "nyc": "^13.1.0",
+    "nyc": "^13.3.0",
     "rimraf": "^2.6.2",
     "sinon": "^7.1.1",
-    "sinon-chai": "^3.2.0",
+    "sinon-chai": "^3.3.0",
     "standard": "^12.0.1"
   },
   "nyc": {
     "require": [
-      "babel-register"
+      "@babel/register"
     ],
     "sourceMap": false,
     "instrument": false,

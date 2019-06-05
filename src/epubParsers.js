@@ -3,6 +3,8 @@ import unzip from 'unzip-stream'
 import ResHandler from './responseHandlers'
 import logger from './helpers/logger'
 
+import { runAccessCheck } from './accessibilityCheck'
+
 AWS.config.update({
   region: 'us-east-1',
   logger: process.stdout,
@@ -22,7 +24,7 @@ exports.checkForExisting = (fileName, updated) => {
   return new Promise((resolve, reject) => {
     const headParams = {
       Bucket: process.env.AWS_S3_EPUB_BUCKET,
-      Key: 'epub_test/' + fileName,
+      Key: `${process.env.S3_ARCHIVE_FOLDER}/${fileName}`,
       IfUnmodifiedSince: updated,
     }
     const fileCheck = S3.headObject(headParams).promise()
@@ -53,15 +55,15 @@ exports.getBuffer = (stream) => {
 }
 
 exports.epubStore = (partName, instanceID, updated, type, response, itemData, fileName) => {
-  logger.info('Storing ' + partName + ' in S3')
+  logger.info(`Storing ${partName} in S3`)
   let putData
   let putKey
   if (type === 'archive') {
     putData = response
-    putKey = 'epub_test/' + partName
+    putKey = `${process.env.S3_ARCHIVE_FOLDER}/${partName}`
   } else {
     putData = response
-    putKey = 'expl_test/' + partName
+    putKey = `${process.env.S3_EXPLODE_FOLDER}/${partName}`
   }
   const putParams = {
     Body: putData,
@@ -83,21 +85,29 @@ exports.epubStore = (partName, instanceID, updated, type, response, itemData, fi
           content_type: 'ebook',
           source: itemData.source,
           drm: itemData.drm,
-          rights_uri: itemData.rights_uri,
+          rights: itemData.rights,
           instance_id: instanceID,
           modified: updated.toISOString(),
-          identifier: {
+          identifiers: [{
             type: itemData.source,
             identifier: outputFile,
-          },
-          link: {
+          }],
+          links: [{
             url: data.Location,
             md5: data.ETag,
             rel_type: type,
             media_type: 'application/epub+zip',
-          },
+          }],
           measurements: itemData.measurements,
         },
+      }
+      if (type === 'archive') {
+        runAccessCheck(
+          data.Key,
+          instanceID,
+          outputFile,
+          itemData.source,
+        )
       }
       ResHandler.resultHandler(handleResp)
     } else {

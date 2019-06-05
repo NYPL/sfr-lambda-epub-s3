@@ -14,6 +14,7 @@ if (process.env.AWS_KINESIS_ENDPOINT) {
 }
 
 const kinesis = new AWS.Kinesis(customKinEndpoint)
+const sqs = new AWS.SQS()
 
 exports.resultHandler = (handleResp) => {
   const outParams = {
@@ -27,5 +28,19 @@ exports.resultHandler = (handleResp) => {
   }).catch((err) => {
     logger.error('FAILED TO PUT TO KINESIS')
     logger.debug(err)
+  })
+}
+
+exports.sqsHandler = (handleMsg, queue) => {
+  const outMsg = JSON.stringify(handleMsg)
+  const msgParams = {
+    MessageBody: outMsg,
+    QueueUrl: queue,
+    DelaySeconds: 0,
+  }
+
+  sqs.sendMessage(msgParams, (err, data) => {
+    if (err) throw err
+    else return data
   })
 }

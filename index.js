@@ -1,5 +1,4 @@
 import axios from 'axios'
-import AccessibilityChecker from './src/accessibilityCheck'
 import Parser from './src/epubParsers'
 import ResHandler from './src/responseHandlers'
 import logger from './src/helpers/logger'
@@ -7,14 +6,12 @@ import LambdaError from './src/helpers/error'
 
 const fileNameRegex = /[0-9]+[.]{1}epub[.]{1}(?:no|)images/
 
-let records
-
 exports.handler = async (event, context, callback) => {
   logger.debug('Handling input events from Kinesis stream')
-  records = event.Records;
-  let resp;
+  const records = event.Records;
+
   if (!records || records.length < 1) {
-    resp = {
+    const resp = {
       status: 500,
       code: 'missing_records',
       message: 'No records found in event',
@@ -27,42 +24,17 @@ exports.handler = async (event, context, callback) => {
   return callback(null, 'Successfully parsed records')
 }
 
-exports.parseRecords = () => {
+exports.parseRecords = (records) => {
   const results = records.map(exports.parseRecord)
   return new Promise((resolve) => {
     Promise.all(results).then((responses) => {
       responses.forEach((resp) => {
-        ResHandler.resultHandler(resp)
+        logger.notice('Completed epub processing')
+        logger.debug(JSON.stringify(resp))
       })
       resolve()
     })
   })
-}
-
-exports.runAccessCheck = async (zipData, instanceID, fileName, source) => {
-  try {
-    const accessReport = await AccessibilityChecker.getAccessibilityReport(zipData)
-    accessReport.instance_id = instanceID
-    accessReport.identifier = {
-      type: source,
-      identifier: fileName,
-    }
-    return {
-      status: 200,
-      code: 'accessibility',
-      message: 'Created Accessibility Score',
-      type: 'access_report',
-      method: 'insert',
-      data: accessReport,
-    }
-  } catch (err) {
-    logger.error('Failed to generate accessibility report for item')
-    logger.debug(err)
-    throw new LambdaError('Failed to generate Accessibility Report', {
-      status: 500,
-      code: 'accessibility-report',
-    })
-  }
 }
 
 exports.parseRecord = (record) => {
@@ -79,20 +51,22 @@ exports.parseRecord = (record) => {
       // Take url and metadata and store object at address in S3
       exports.storeFromURL(url, instanceID, updated, fileName, itemData).then((res) => {
         resolve(res)
-      }).catch(err => {
+      }).catch((err) => {
         throw err
       })
     } catch (err) {
       logger.error('Error in processing url')
       logger.debug(err)
-      resolve({
+      const errReport = {
         status: err.status,
         code: err.code,
         message: err.message,
         data: {
           item: instanceID,
         },
-      })
+      }
+      ResHandler.resultHandler(errReport)
+      resolve(errReport)
     }
   })
 }
@@ -104,7 +78,7 @@ exports.readFromKinesis = (record) => {
   const fileNameMatch = fileNameRegex.exec(url)
   if (!fileNameMatch) {
     logger.error('Provided URL failed to match regular expression')
-    throw new LambdaError('Failed to extract file from url ' + url, {
+    throw new LambdaError(`Failed to extract file from url ${url}`, {
       status: 500,
       code: 'regex-failure',
     })
@@ -117,7 +91,7 @@ exports.readFromKinesis = (record) => {
 }
 
 exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
-  logger.debug('Storing file from ' + url)
+  logger.debug(`Storing file from ${url}`)
   return new Promise((resolve, reject) => {
     Parser.checkForExisting(fileName, updated).then(() => {
       axios({
@@ -129,13 +103,11 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
           Parser.epubExplode(fileName, instanceID, updated, response, itemData)
           Parser.getBuffer(response.data).then((buffer) => {
             Parser.epubStore(fileName, instanceID, updated, 'archive', buffer, itemData)
-            const reportBlock = exports.runAccessCheck(
-              buffer,
-              instanceID,
-              fileName,
-              itemData.source,
-            )
-            return resolve(reportBlock)
+            resolve({
+              message: 'Storing/Scoring Epub',
+              code: 'success',
+              status: 200,
+            })
           })
             .catch((err) => {
               if (err.name === 'LambdaError') { reject(err) }
@@ -162,12 +134,12 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
             content_type: 'ebook',
             source: itemData.source,
             drm: itemData.drm,
-            rights_uri: itemData.rights_uri,
+            rights: itemData.rights,
             instance_id: instanceID,
-            identifier: {
+            identifiers: [{
               type: itemData.source,
               identifier: fileName,
-            },
+            }],
             measurements: itemData.measurements,
           },
         })
