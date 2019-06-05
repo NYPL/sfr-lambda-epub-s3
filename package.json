@@ -34,12 +34,13 @@
     "winston": "^3.1.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-istanbul": "^5.1.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-register": "^6.26.0",
-    "babel-runtime": "^6.26.0",
+    "@babel/cli": "^7.4.4",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "@babel/runtime": "^7.4.5",
+    "@babel/traverse": "^7.4.5",
+    "babel-plugin-istanbul": "^5.1.4",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "coveralls": "^3.0.2",
@@ -49,7 +50,7 @@
     "mocha": "^5.2.0",
     "nock": "^10.0.2",
     "node-lambda": "^0.12.0",
-    "nyc": "^13.1.0",
+    "nyc": "^13.3.0",
     "rimraf": "^2.6.2",
     "sinon": "^7.1.1",
     "sinon-chai": "^3.3.0",
@@ -57,7 +58,7 @@
   },
   "nyc": {
     "require": [
-      "babel-register"
+      "@babel/register"
     ],
     "sourceMap": false,
     "instrument": false,
