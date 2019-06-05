@@ -75,6 +75,8 @@ exports.epubStore = (partName, instanceID, updated, type, response, itemData, fi
   const uploadProm = S3.upload(putParams).promise()
   uploadProm.then((data) => {
     if (type === 'archive' || type === 'explMain') {
+      const epubDownload = type === 'archive'
+      const epubImages = !outputFile.includes('noimages')
       const handleResp = {
         status: 200,
         code: 'stored',
@@ -95,7 +97,12 @@ exports.epubStore = (partName, instanceID, updated, type, response, itemData, fi
           links: [{
             url: data.Location,
             md5: data.ETag,
-            rel_type: type,
+            flags: {
+              local: true,
+              download: epubDownload,
+              images: epubImages,
+              ebook: true,
+            },
             media_type: 'application/epub+zip',
           }],
           measurements: itemData.measurements,
@@ -129,7 +136,7 @@ exports.epubExplode = (fileName, itemID, updated, response, itemData) => {
   try {
     response.data.pipe(unzip.Parse())
       .on('entry', (entry) => {
-        const partName = fileName + '/' + entry.path
+        const partName = `${fileName}/${entry.path}`
         let putType = 'explPart'
         if (entry.path.includes('content.opf')) putType = 'explMain'
         exports.epubStore(partName, itemID, updated, putType, entry, itemData, fileName)
