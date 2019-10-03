@@ -3,6 +3,7 @@ import Parser from './src/epubParsers'
 import ResHandler from './src/responseHandlers'
 import logger from './src/helpers/logger'
 import LambdaError from './src/helpers/error'
+import { formatFileName } from './src/helpers/fileNameParser'
 
 const fileNameRegex = /[0-9]+[.]{1}epub[.]{1}(?:no|)images/
 
@@ -72,6 +73,7 @@ exports.parseRecord = (record) => {
 }
 
 exports.readFromKinesis = (record) => {
+  // eslint-disable-next-line new-cap
   const dataBlock = JSON.parse(new Buffer.from(record, 'base64').toString('ascii'))
   const payload = dataBlock.data
   const { url } = payload
@@ -83,7 +85,7 @@ exports.readFromKinesis = (record) => {
       code: 'regex-failure',
     })
   }
-  const fileName = fileNameMatch[0]
+  const fileName = formatFileName(fileNameMatch[0])
   const instanceID = payload.id
   const updated = new Date(payload.updated)
   const itemData = payload.data
@@ -96,7 +98,7 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
     Parser.checkForExisting(fileName, updated).then(() => {
       axios({
         method: 'get',
-        url: url,
+        url,
         responseType: 'stream',
       })
         .then((response) => {
