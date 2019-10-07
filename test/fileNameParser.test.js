@@ -31,5 +31,16 @@ describe('helpers/fileNameParser', () => {
       expect(parsedFileName).to.equal('otherEpubFormat.epub')
       done()
     })
+
+    it('should reject urls without .epub extension', (done) => {
+      const badFileName = 'http://gutenberg.org.ebook/actuallypdf123.pdf'
+      try {
+        formatFileName(badFileName)
+      } catch (err) {
+        expect(err.status).to.equal(500)
+        expect(err.code).to.equal('regex-failure')
+      }
+      done()
+    })
   })
 })

@@ -201,11 +201,10 @@ describe('Handlers [index.js]', () => {
 
     it('should throw LambdaError if regex match fails', () => {
       testData.data = {
-        url: 'http://www.gutenberg.org/ebooks/bad.epub.images',
-        id: 'bad',
+        url: 'http://www/gutenberg/org/notReal',
+        id: 'notreal',
         updated: moment().format(),
       }
-      testData.data.url = 'http://www/gutenberg/org/notReal'
       testRecord.kinesis.data = Buffer.from(JSON.stringify(testData)).toString('base64')
       try {
         results = Lambda.readFromKinesis(testRecord.kinesis.data)
