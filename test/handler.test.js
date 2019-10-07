@@ -182,7 +182,7 @@ describe('Handlers [index.js]', () => {
       expect(results[0]).to.equal('http://www.gutenberg.org/ebooks/10.epub.images')
       expect(results[1]).to.equal('10')
       expect(results[2]).to.deep.equal(new Date(testData.data.updated))
-      expect(results[3]).to.deep.equal('10_images.epub')
+      expect(results[3]).to.equal('10_images.epub')
     })
 
     it('should should transform 00000.epub.(no)images URLs', () => {
@@ -196,7 +196,7 @@ describe('Handlers [index.js]', () => {
       expect(results[0]).to.equal('http://www.gutenberg.org/ebooks/9999.epub.noimages')
       expect(results[1]).to.equal('9999')
       expect(results[2]).to.deep.equal(new Date(testData.data.updated))
-      expect(results[3]).to.deep.equal('9999_noimages.epub')
+      expect(results[3]).to.equal('9999_noimages.epub')
     })
 
     it('should throw LambdaError if regex match fails', () => {
