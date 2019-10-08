@@ -1,6 +1,8 @@
 language: node_js
 node_js:
 - '10.16'
+before_install:
+- ./awsCredentials.sh
 install: npm install
 script: npm test
 cache:
