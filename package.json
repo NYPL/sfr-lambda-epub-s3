@@ -1,6 +1,6 @@
 {
   "name": "sfr-lambda-epub-to-s3",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A lambda for the SFR project that reads a Kinesis stream and stores ePub files in s3",
   "main": "index.js",
   "scripts": {

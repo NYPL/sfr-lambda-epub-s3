@@ -1,4 +1,7 @@
 # Storing ePub files in s3 for ResearchNow
+
+[![GitHub version](https://badge.fury.io/gh/NYPL%2Fsfr-lambda-epub-s3.svg)](https://badge.fury.io/gh/NYPL%2Fsfr-lambda-epub-s3) [![Build Status](https://travis-ci.org/NYPL/sfr-lambda-epub-s3.svg?branch=development)](https://travis-ci.org/NYPL/sfr-lambda-epub-s3)
+
 This is a Lambda that writes ePub files to an s3 bucket and returns relevant metadata and URLs to the stored files. It reads from a Kinesis stream of URLs and writes out to another stream.
 
 ## Process
