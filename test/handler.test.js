@@ -162,11 +162,7 @@ describe('Handlers [index.js]', () => {
     let testData
     beforeEach(() => {
       testData = {
-        data: {
-          url: 'http://www.gutenberg.org/ebooks/10.epub.images',
-          id: '10',
-          updated: moment().format(),
-        },
+        data: null,
       }
       testRecord = {
         kinesis: {
@@ -176,15 +172,39 @@ describe('Handlers [index.js]', () => {
     })
 
     it('should return data fields', () => {
+      testData.data = {
+        url: 'http://www.gutenberg.org/ebooks/10.epub.images',
+        id: '10',
+        updated: moment().format(),
+      }
       testRecord.kinesis.data = Buffer.from(JSON.stringify(testData)).toString('base64')
       const results = Lambda.readFromKinesis(testRecord.kinesis.data)
       expect(results[0]).to.equal('http://www.gutenberg.org/ebooks/10.epub.images')
       expect(results[1]).to.equal('10')
       expect(results[2]).to.deep.equal(new Date(testData.data.updated))
+      expect(results[3]).to.equal('10_images.epub')
+    })
+
+    it('should should transform 00000.epub.(no)images URLs', () => {
+      testData.data = {
+        url: 'http://www.gutenberg.org/ebooks/9999.epub.noimages',
+        id: '9999',
+        updated: moment().format(),
+      }
+      testRecord.kinesis.data = Buffer.from(JSON.stringify(testData)).toString('base64')
+      const results = Lambda.readFromKinesis(testRecord.kinesis.data)
+      expect(results[0]).to.equal('http://www.gutenberg.org/ebooks/9999.epub.noimages')
+      expect(results[1]).to.equal('9999')
+      expect(results[2]).to.deep.equal(new Date(testData.data.updated))
+      expect(results[3]).to.equal('9999_noimages.epub')
     })
 
     it('should throw LambdaError if regex match fails', () => {
-      testData.data.url = 'http://www/gutenberg/org/notReal'
+      testData.data = {
+        url: 'http://www/gutenberg/org/notReal',
+        id: 'notreal',
+        updated: moment().format(),
+      }
       testRecord.kinesis.data = Buffer.from(JSON.stringify(testData)).toString('base64')
       try {
         results = Lambda.readFromKinesis(testRecord.kinesis.data)

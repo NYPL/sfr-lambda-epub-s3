@@ -3,8 +3,7 @@ import Parser from './src/epubParsers'
 import ResHandler from './src/responseHandlers'
 import logger from './src/helpers/logger'
 import LambdaError from './src/helpers/error'
-
-const fileNameRegex = /[0-9]+[.]{1}epub[.]{1}(?:no|)images/
+import { formatFileName } from './src/helpers/fileNameParser'
 
 exports.handler = async (event, context, callback) => {
   logger.debug('Handling input events from Kinesis stream')
@@ -72,18 +71,11 @@ exports.parseRecord = (record) => {
 }
 
 exports.readFromKinesis = (record) => {
+  // eslint-disable-next-line new-cap
   const dataBlock = JSON.parse(new Buffer.from(record, 'base64').toString('ascii'))
   const payload = dataBlock.data
   const { url } = payload
-  const fileNameMatch = fileNameRegex.exec(url)
-  if (!fileNameMatch) {
-    logger.error('Provided URL failed to match regular expression')
-    throw new LambdaError(`Failed to extract file from url ${url}`, {
-      status: 500,
-      code: 'regex-failure',
-    })
-  }
-  const fileName = fileNameMatch[0]
+  const fileName = formatFileName(url)
   const instanceID = payload.id
   const updated = new Date(payload.updated)
   const itemData = payload.data
@@ -96,7 +88,7 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
     Parser.checkForExisting(fileName, updated).then(() => {
       axios({
         method: 'get',
-        url: url,
+        url,
         responseType: 'stream',
       })
         .then((response) => {
