@@ -98,6 +98,7 @@ exports.epubStore = (partName, instanceID, updated, type, response, itemData, fi
             url: data.Location,
             md5: data.ETag,
             flags: {
+              ereader: type === 'archive',
               local: true,
               download: epubDownload,
               images: epubImages,
