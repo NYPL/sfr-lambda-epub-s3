@@ -4,6 +4,7 @@ import ResHandler from './src/responseHandlers'
 import logger from './src/helpers/logger'
 import LambdaError from './src/helpers/error'
 import { formatFileName } from './src/helpers/fileNameParser'
+import { exceptions } from 'winston'
 
 exports.handler = async (event, context, callback) => {
   logger.debug('Handling input events from Kinesis stream')
@@ -18,8 +19,13 @@ exports.handler = async (event, context, callback) => {
     ResHandler.resultHandler(resp)
     return callback(new Error('Kinesis stream failed or contained no records'))
   }
-
-  await exports.parseRecords(records)
+  try {
+    await exports.parseRecords(records)
+  } catch (err) {
+    logger.error('Could not load ebook file')
+    logger.debug(err)
+    return callback(null, 'Unable to store ebook file')
+  }
   return callback(null, 'Successfully parsed records')
 }
 
@@ -36,38 +42,32 @@ exports.parseRecords = (records) => {
   })
 }
 
-exports.parseRecord = (record) => {
+exports.parseRecord = async (record) => {
   let url = null
   let instanceID = null
   let updated = null
   let fileName = null
   let itemData = null
-  return new Promise((resolve) => {
-    try {
-      // Parse base64 json block received from event
-      const dataFields = exports.readFromKinesis(record.kinesis.data);
-      [url, instanceID, updated, fileName, itemData] = dataFields
-      // Take url and metadata and store object at address in S3
-      exports.storeFromURL(url, instanceID, updated, fileName, itemData).then((res) => {
-        resolve(res)
-      }).catch((err) => {
-        throw err
-      })
-    } catch (err) {
-      logger.error('Error in processing url')
-      logger.debug(err)
-      const errReport = {
-        status: err.status,
-        code: err.code,
-        message: err.message,
-        data: {
-          item: instanceID,
-        },
-      }
-      ResHandler.resultHandler(errReport)
-      resolve(errReport)
+  try {
+    // Parse base64 json block received from event
+    const dataFields = exports.readFromKinesis(record.kinesis.data);
+    [url, instanceID, updated, fileName, itemData] = dataFields;
+    // Take url and metadata and store object at address in S3
+    return await exports.storeFromURL(url, instanceID, updated, fileName, itemData)
+  } catch (err) {
+    logger.error('Error in processing url')
+    logger.debug(err)
+    const errReport = {
+      status: err.status,
+      code: err.code,
+      message: err.message,
+      data: {
+        item: instanceID,
+      },
     }
-  })
+    ResHandler.resultHandler(errReport)
+    return errReport
+  }
 }
 
 exports.readFromKinesis = (record) => {
@@ -112,6 +112,7 @@ exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
               }))
             })
         })
+        .catch(err => reject(err))
     })
       .catch((err) => {
         logger.notice('Found existing file, no action necessary')
