@@ -213,6 +213,21 @@ describe('Handlers [index.js]', () => {
         expect(err.code).to.equal('regex-failure')
       }
     })
+
+    it('should prefer a supplied filename rather than one parsed from a URL', () => {
+      testData.data = {
+        url: 'http://www.somefile.com/epubs/1/epub',
+        id: '1',
+        updated: moment().format(),
+        fileName: '1.epub'
+      }
+      testRecord.kinesis.data = Buffer.from(JSON.stringify(testData)).toString('base64')
+      const results = Lambda.readFromKinesis(testRecord.kinesis.data)
+      expect(results[0]).to.equal('http://www.somefile.com/epubs/1/epub')
+      expect(results[1]).to.equal('1')
+      expect(results[2]).to.deep.equal(new Date(testData.data.updated))
+      expect(results[3]).to.equal('1.epub')
+    })
   })
 
   describe('storeFromURL(url, itemID, updated, fileName)', () => {

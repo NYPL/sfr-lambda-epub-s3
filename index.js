@@ -74,12 +74,12 @@ exports.readFromKinesis = (record) => {
   // eslint-disable-next-line new-cap
   const dataBlock = JSON.parse(new Buffer.from(record, 'base64').toString('ascii'))
   const payload = dataBlock.data
-  const { url } = payload
-  const fileName = formatFileName(url)
+  const { url, fileName } = payload
+  const formattedName = fileName || formatFileName(url)
   const instanceID = payload.id
   const updated = new Date(payload.updated)
   const itemData = payload.data
-  return [url, instanceID, updated, fileName, itemData]
+  return [url, instanceID, updated, formattedName, itemData]
 }
 
 exports.storeFromURL = (url, instanceID, updated, fileName, itemData) => {
