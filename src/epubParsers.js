@@ -139,7 +139,7 @@ exports.epubExplode = (fileName, itemID, updated, response, itemData) => {
       .on('entry', (entry) => {
         const partName = `${fileName}/${entry.path}`
         let putType = 'explPart'
-        if (entry.path.includes('content.opf')) putType = 'explMain'
+        if (entry.path.includes('content.opf') || entry.path.includes('package.opf')) putType = 'explMain'
         exports.epubStore(partName, itemID, updated, putType, entry, itemData, fileName)
       })
   } catch (err) {
